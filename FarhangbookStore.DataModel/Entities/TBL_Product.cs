@@ -97,18 +97,18 @@ namespace FarhangbookStore.DataModel.Entities
 
         [ForeignKey("Categoryid")]
         public TBL_ProductCategory TBLProductCategory { get; set; }
-
+        //=================================================================
         public List<TBL_ProductFaviorate> TBLProductFaviorate { get; set; }
+        public List<TBL_ProductReview> TBLProductReview { get; set; }
+        public List<TBL_ProductGallery> TBLProductGallerie { get; set; }
 
         //[ForeignKey("brandid")]
         //public ProductBrand ProductBrand { get; set; }
 
-        //public List<ProductReview> ProductReviews { get; set; }
 
         //public List<ProductQuestion> questions { get; set; }
 
         //public List<ProductComment> comments { get; set; }
-        //public List<ProductGallery> ProductGallerys { get; set; }
         //public List<ProductPrice> ProductPrices { get; set; }
         //public List<ProductReating> ProductReatings { get; set; }
         #endregion

@@ -48,7 +48,6 @@ builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
 });
 #endregion
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
