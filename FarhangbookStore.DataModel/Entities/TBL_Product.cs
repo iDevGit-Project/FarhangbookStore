@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FarhangbookStore.DataModel.Entities
+{
+    public class TBL_Product
+    {
+        [Key]
+        public int Productid { get; set; }
+
+        //نام کتاب به فارسی
+        [Required(ErrorMessage = "لطفا {0} را وارد نمایید .")]
+        [MinLength(3, ErrorMessage = "{0} نمیتواند کمنتر از {1} باشد .")]
+        [MaxLength(500, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد .")]
+        public string ProductFaTitle { get; set; }
+
+        //نام کتاب به انگلیسی
+        [Required(ErrorMessage = "لطفا {0} را وارد نمایید .")]
+        [MinLength(3, ErrorMessage = "{0} نمیتواند کمنتر از {1} باشد .")]
+        [MaxLength(500, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد .")]
+        public string ProductEnTitle { get; set; }
+
+        //توضیحات کتاب
+        public string Description { get; set; }
+
+        //انتشارات
+        public string Publishers { get; set; }
+
+        //نوبت چاپ
+        public string Published { get; set; }
+
+        //پایه تحصیلی
+        public string Circulation { get; set; }
+
+        //نویسنده - ناشر
+        public string Writer { get; set; }
+
+        //قیمت کتاب
+        public string Price { get; set; }
+
+        //شابک
+        public string ISBN { get; set; }
+
+        public string ProductImage { get; set; }
+        public string ProductImageAlt { get; set; }
+        public string ProductImageTitle { get; set; }
+
+        // تنظیم ویژگی مربوط به کلمات کلیدی به جهت سئو
+        public string Keywords { get; set; }
+
+        // تنظیم ویژگی مربوط به توضیحات صفحات به جهت سئو
+        public string MetaDescription { get; set; }
+
+        // تنظیم ویژگی مربوط به نامک جهت توصیف کردن محتوای صفحه به جهت سئو
+        public string SlugNamaak { get; set; }
+
+        //تعداد فروش
+        public int ProductSell { get; set; }
+
+        //امتیاز محصول
+        public byte ProductGrade { get; set; }
+
+        //برچسب های محصول
+        public string ProductTag { get; set; }
+
+        //تاریخ درج محصول
+        public DateTime ProductCreate { get; set; }
+
+        //تاریخ بروزرسانی محصول
+        public DateTime ProductUpdate { get; set; }
+
+        //وزن محصول
+        public int ProductWeith { get; set; }
+
+        //محصول در سایت فعال باشد یا خیر؟
+        public bool IsActive { get; set; }
+
+        //فعال یا غیرفعالسازی محصول در سایت
+        public bool IsDelete { get; set; }
+        public int Categoryid { get; set; }
+        public int brandid { get; set; }
+
+
+        [NotMapped]
+        public int mainprice { get; set; }
+
+        [NotMapped]
+        public int? sepcialprice { get; set; }
+
+
+        #region ارتباط های جداول
+
+        [ForeignKey("Categoryid")]
+        public TBL_ProductCategory TBLProductCategory { get; set; }
+
+        public List<TBL_ProductFaviorate> TBLProductFaviorate { get; set; }
+
+        //[ForeignKey("brandid")]
+        //public ProductBrand ProductBrand { get; set; }
+
+        //public List<ProductReview> ProductReviews { get; set; }
+
+        //public List<ProductQuestion> questions { get; set; }
+
+        //public List<ProductComment> comments { get; set; }
+        //public List<ProductGallery> ProductGallerys { get; set; }
+        //public List<ProductPrice> ProductPrices { get; set; }
+        //public List<ProductReating> ProductReatings { get; set; }
+        #endregion
+
+    }
+}

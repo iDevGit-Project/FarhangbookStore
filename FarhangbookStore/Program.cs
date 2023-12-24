@@ -1,11 +1,18 @@
 ﻿using FarhangbookStore.Common.PublicExtentions;
+using FarhangbookStore.PublicExtentions;
 using NToastNotify;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using WebMarkupMin.AspNetCore7;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// در این مکان جهت ارتباط رشته اتصال به بانک اطلاعاتی و دیگر تنظیمات appsettings.json شناسایی فایل جیسون مربوط به 
+var configuration = builder.Configuration.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile(FileNamesExtentions.AppSettingName).Build();
+// MS SQL Server سرویس تنظیمات مربوط به اتصال رشته مربوط به پایگاه داده در 
 
 #region سرویس مربوط به تاریخ شمسی
 builder.Services.AddTransient<ConvertDate>();
@@ -31,7 +38,6 @@ builder.Services.AddWebMarkupMin(option =>
 
 #region PWA سرویس مربوط به
 //builder.Services.AddProgressiveWebApp();
-
 #endregion
 
 #region متد های مربوط به نوتیفیکیشن
@@ -41,6 +47,7 @@ builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
 	PositionClass = ToastPositions.TopCenter
 });
 #endregion
+
 
 var app = builder.Build();
 
@@ -61,8 +68,6 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseNToastNotify();
-
-app.UseRouting();
 
 app.UseAuthorization();
 
