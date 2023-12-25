@@ -36,8 +36,8 @@ namespace FarhangbookStore.DataModel.Entities
 
         public List<TBL_PropertyName_Category> TBLPropertyNameCategories { get; set; }
 
-        //[ForeignKey("SubCategory")]
-        //public ProductCategory Categori { get; set; }
+        [ForeignKey("SubCategory")]
+        public TBL_ProductCategory Categori { get; set; }
 
         #endregion
     }

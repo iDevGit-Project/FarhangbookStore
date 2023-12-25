@@ -23,7 +23,7 @@ namespace FarhangbookStore.DataModel.Entities
         #region Relation
 
         [ForeignKey("Productid")]
-        public TBL_Product TBLProduct { get; set; }
+        public TBL_Product TBLProducts { get; set; }
 
         #endregion
     }

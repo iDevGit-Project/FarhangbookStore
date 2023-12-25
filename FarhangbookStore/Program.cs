@@ -1,5 +1,8 @@
-﻿using FarhangbookStore.Common.PublicExtentions;
+﻿using FarhangbookStore.DataModel;
 using FarhangbookStore.PublicExtentions;
+using FarhangbookStore.Services.Interface;
+using FarhangbookStore.Services.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -7,12 +10,15 @@ using WebMarkupMin.AspNetCore7;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
 // در این مکان جهت ارتباط رشته اتصال به بانک اطلاعاتی و دیگر تنظیمات appsettings.json شناسایی فایل جیسون مربوط به 
 var configuration = builder.Configuration.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile(FileNamesExtentions.AppSettingName).Build();
 // MS SQL Server سرویس تنظیمات مربوط به اتصال رشته مربوط به پایگاه داده در 
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers();
+
 
 #region سرویس مربوط به تاریخ شمسی
 builder.Services.AddTransient<ConvertDate>();
@@ -47,6 +53,14 @@ builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
 	PositionClass = ToastPositions.TopCenter
 });
 #endregion
+
+// Services UnitOfWord for ApplicationDbContext
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+//Services DataBase
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("cstr")));
+
 
 var app = builder.Build();
 

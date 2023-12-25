@@ -12,7 +12,7 @@ namespace FarhangbookStore.DataModel.Entities
         [Key]
         public int brandid { get; set; }
 
-        [Display(Name = "عنوان برند")]
+        // عنوان برند کتاب
         [Required(ErrorMessage = "وارد کردن {0} اجباری می باشد .")]
         [MinLength(5, ErrorMessage = "{0} نمیتواند کمتر از {1} باشد")]
         [MaxLength(50, ErrorMessage = "{0} نمیتواند بیشتر از {1} باید")]

@@ -96,11 +96,11 @@ namespace FarhangbookStore.DataModel.Entities
         #region ارتباط های جداول
 
         [ForeignKey("Categoryid")]
-        public TBL_ProductCategory TBLProductCategory { get; set; }
+        public TBL_ProductCategory TBLProductCategorys { get; set; }
         //=================================================================
-        public List<TBL_ProductFaviorate> TBLProductFaviorate { get; set; }
-        public List<TBL_ProductReview> TBLProductReview { get; set; }
-        public List<TBL_ProductGallery> TBLProductGallerie { get; set; }
+        public List<TBL_ProductFaviorate> TBLProductFaviorates { get; set; }
+        public List<TBL_ProductReview> TBLProductReviews { get; set; }
+        public List<TBL_ProductGallery> TBLProductGalleries { get; set; }
 
         //[ForeignKey("brandid")]
         //public ProductBrand ProductBrand { get; set; }

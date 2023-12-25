@@ -25,4 +25,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FarhangbookStore.Common\FarhangbookStore.Common.csproj" />
+  </ItemGroup>
+
 </Project>

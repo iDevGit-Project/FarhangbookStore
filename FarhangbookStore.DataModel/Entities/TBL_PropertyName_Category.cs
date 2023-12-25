@@ -19,10 +19,10 @@ namespace FarhangbookStore.DataModel.Entities
 
         #region Relation
         [ForeignKey("Categoryid")]
-        public TBL_ProductCategory TBLProductCategory { get; set; }
+        public TBL_ProductCategory TBLProductCategorys { get; set; }
 
         [ForeignKey("PropertyNameId")]
-        public TBL_PropertyName TBLPropertyName { get; set; }
+        public TBL_PropertyName TBLPropertyNames { get; set; }
         #endregion
     }
 }
