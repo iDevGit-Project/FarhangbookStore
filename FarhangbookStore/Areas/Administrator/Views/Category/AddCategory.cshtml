@@ -1,0 +1,199 @@
+﻿@model FarhangbookStore.DataModel.Entities.TBL_ProductCategory
+@inject FarhangbookStore.PublicExtentions.ConvertDate convertDate
+@{
+    ViewData["Title"] = "ثبت دسته بندی جدید | فروشگاه اینترنتی کتابفروشی فرهنگ";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<link href="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+
+<div class="m-heading-1 border-yellow-crusta m-bordered">
+    <h4 class="bold">راهنما</h4>
+    <p>
+        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت اطلاعات کتاب جدید، عملیات <span class="bold">فیلترکردن، ویرایش و غیرفعالسازی</span> اطلاعات کتاب را انجام دهید.
+    </p>
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="portlet light portlet-fit portlet-datatable bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class=" icon-layers font-green"></i>
+            <span class="caption-subject font-green-sharp bold uppercase">جستجوی اطلاعات</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-solid" placeholder="جستجوی کلی اطلاعات کتاب بر اساس نام...">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">بررسی اطلاعات</button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <!-- BEGIN DRAGGABLE EVENTS PORTLET-->
+                <div class="input-icon right">
+                    <i class="fa fa-calendar"></i>
+                    <input class="form-control" id="NewsDate" name="NewsDate"
+                           placeholder="از تاریخ"
+                           data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#NewsDate" data-groupid="group1"
+                           data-formdate="true" data-enabletimepicker="false" data-placement="bottom" />
+                </div>
+                <!-- END DRAGGABLE EVENTS PORTLET-->
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <!-- BEGIN DRAGGABLE EVENTS PORTLET-->
+                <div class="input-icon right">
+                    <i class="fa fa-calendar"></i>
+                    <input class="form-control" id="NewsDate" name="NewsDate"
+                           placeholder="تا تاریخ"
+                           data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#NewsDate" data-groupid="group1"
+                           data-formdate="true" data-enabletimepicker="false" data-placement="bottom" />
+                </div>
+                <!-- END DRAGGABLE EVENTS PORTLET-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN CONTAINER -->
+<div class="portlet light portlet-fit portlet-datatable bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class=" icon-layers font-green"></i>
+            <span class="caption-subject font-green-sharp bold uppercase">ثبت دسته بندی جدید</span>
+        </div>
+        <div class="actions">
+            <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
+@*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
+            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline"> بازگشت </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- PERSONAL INFO TAB -->
+        <form asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" enctype="multipart/form-data">
+            <div class="panel-body">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="m-heading-1 border-red-thunderbird m-bordered">
+                        <h4 class="bold">خطای ثبت اطلاعات!</h4>
+                        <p>
+                            <span class="bold">لطفاً نام دسته بندی ها را به صورت کامل وارد نمایید.</span>
+                        </p>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-md-5 col-xl-12 col-sm-12">
+                        <div class="form-group">
+                            @* <label asp-for="CategoryFaTitle" class="control-label"></label> *@
+                            <div class="input-icon right">
+                                <i class="icon-layers"></i>
+                                <input asp-for="CategoryFaTitle" class="form-control input-icon right" autofocus="autofocus" placeholder="عنوان دسته بندی را به فارسی وارد نمایید." />
+                            </div>
+                            <span asp-validation-for="CategoryFaTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-12 col-sm-12">
+                        <div class="form-group">
+                            @* <label asp-for="CategoryEnTitle" class="control-label"></label> *@
+                            <div class="input-icon right">
+                                <i class="icon-layers"></i>
+                                <input asp-for="CategoryEnTitle" class="form-control input-icon right EN__Font" placeholder="Enter the title of the category in English." />
+                            </div>
+                            <span asp-validation-for="CategoryEnTitle" id="inputError" class="help-block text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xl-12 col-sm-12">
+                        <button type="submit" id="AddData" value="ثبت اطلاعات" class="btn-group-justified btn btn-primary" data-style="zoom-in"> ثبت و ذخیره <i class="fa fa-save ml-2"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END PERSONAL INFO TAB -->
+    </div>
+</div>
+<!-- END CONTAINER -->
+@section MainScripts{
+    <script src="~/lib/persiandatepicker/calendar.js"></script>
+    <script src="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+    <!--===================================================================-->
+    <!--اسکریپت جستجوی اطلاعات-->
+    <script>
+        var infoDataTable = $('#Datatable_Book').DataTable({
+            paging: true,
+            // نمایش اطلاعات جستجو شده در زیر جدول به صورت فارسی
+            "language": {
+                "url": "\\Admin\\datatables\\fa.json"
+            }
+        });
+        $('#customerSearch').keyup(function () {
+            infoDataTable.search($(this).val()).draw();
+        });
+        // مرتب سازی اطلاعات ردیف جدول
+        infoDataTable.on('order.dt search.dt', function () {
+            let i = 1;
+            // مرتب سازی از ستون 0 که اولین ستون جدول است انجام شود
+            infoDataTable.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
+    </script>
+    <script>
+        // تنظیمات مربوط به عملیات  خواندن داده ها به همراه رابط گرافیکی انیمیشن
+        $('#Refresh_blockui').click(function () {
+            $.blockUI({
+                title: null,
+                message: 'سیستم در حال پذیرش درخواست شماست. لطفاً منتظر بمانید...',
+                css: {
+                    border: 'none',
+                    padding: '22px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '15px',
+                    '-moz-border-radius': '15px',
+                    allowBodyStretch: true,
+                    opacity: .7,
+                    textAlign: 'center',
+                    color: '#fff',
+                    cursor: 'wait',
+                }
+            });
+            setTimeout($.unblockUI, 4500);
+            setTimeout(() => {
+                document.location.reload();
+            }, 4500);
+        });
+    </script>
+    <script>
+        // تنظیمات مربوط به عملیات  ثبت داده ها داده ها به همراه رابط گرافیکی انیمیشن
+        $('#AddData').click(function () {
+            $.blockUI({
+                title: null,
+                message: 'سیستم در حال ثبت اطلاعات. لطفاً منتظر بمانید...',
+                css: {
+                    border: 'none',
+                    padding: '22px',
+                    backgroundColor: '#26C281',
+                    '-webkit-border-radius': '15px',
+                    '-moz-border-radius': '15px',
+                    allowBodyStretch: true,
+                    opacity: .9,
+                    textAlign: 'center',
+                    color: '#fff',
+                    cursor: 'wait',
+                }
+            });
+            setTimeout($.unblockUI, 1800);
+            setTimeout(() => {
+                document.location.reload();
+            }, 1800);
+        });
+    </script>
+    <!--==================================================================-->
+}
+

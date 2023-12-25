@@ -47,11 +47,18 @@ builder.Services.AddWebMarkupMin(option =>
 #endregion
 
 #region متد های مربوط به نوتیفیکیشن
-builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+builder.Services.AddMvc().AddNToastNotifyNoty(new NotyOptions
 {
-	ProgressBar = true,
-	PositionClass = ToastPositions.TopCenter
+    ProgressBar = true,
+    Timeout = 2000,
+    Theme = "metroui"
 });
+#endregion
+
+#region و انکود کردن آنها HTML تنظیمات مربوط به کد های
+
+builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Arabic }));
+
 #endregion
 
 // Services UnitOfWord for ApplicationDbContext
@@ -72,11 +79,12 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
+app.UseHttpsRedirection();
+
 app.UseWebMarkupMin();
 
 app.UseStaticFiles();
 
-app.UseHttpsRedirection();
 
 app.UseRouting();
 

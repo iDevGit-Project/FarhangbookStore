@@ -2,7 +2,7 @@
 <div class="page-sidebar navbar-collapse collapse" data-keep-expanded="false" data-auto-scroll="true">
     <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
         <li class="nav-item start active">
-            <a asp-page="/Index" class="nav-link nav-toggle">
+            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" class="nav-link nav-toggle">
                 <i class="icon-home"></i>
                 <span class="title">پیشخوان</span>
                 <span class="selected"></span>
@@ -19,7 +19,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a asp-page="/" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <span class="title">ثبت کتاب</span>
                     </a>
                 </li>
@@ -51,7 +51,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a asp-page="/" class="nav-link ">
+                    <a href="/Administrator/Category/AddCategory" class="nav-link ">
                         <span class="title">ثبت دسته بندی</span>
                     </a>
                 </li>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Administrator/Shop/ProductCategories" class="nav-link ">
+                    <a href="#" class="nav-link ">
                         <span class="title">گروه بندی محصولات</span>
                     </a>
                 </li>
