@@ -10,7 +10,8 @@
     <partial name="_ValidationScriptsPartial" />
 }
 
-<link href="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+<link href="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" asp-append-version="true" />
+<link href="~/lib/animated/animate.min.css" rel="stylesheet" asp-append-version="true" />
 
 <div class="m-heading-1 border-yellow-crusta m-bordered">
     <h4 class="bold">راهنما</h4>
@@ -78,16 +79,42 @@
     <div class="portlet-body">
         <!-- PERSONAL INFO TAB -->
         <form asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" enctype="multipart/form-data">
-            <div class="panel-body">
-                @if (ViewBag.ErrorMessage != null)
+            @if (ViewBag.id != 0)
+            {
+                <input type="hidden" asp-for="SubCategory" value="@ViewBag.id" />
+            }
+            @if (TempData["Result"] != null)
+            {
+                if (TempData["Result"].ToString() == "true")
                 {
-                    <div class="m-heading-1 border-red-thunderbird m-bordered">
-                        <h4 class="bold">خطای ثبت اطلاعات!</h4>
-                        <p>
-                            <span class="bold">لطفاً نام دسته بندی ها را به صورت کامل وارد نمایید.</span>
-                        </p>
-                    </div>
+                    <script>
+                        Swal.fire({
+                            title: 'موفق...',
+                            text: 'ثبت دسته بندی جدید انجام شد .',
+                            position: 'top-center',
+                            icon: 'success',
+                            iconColor: '#26C281',
+                            showConfirmButton: false,
+                            timer: 2550
+                        })
+                    </script>
                 }
+                else
+                {
+                    <script>
+                        Swal.fire({
+                            title: 'خطا...',
+                            text: 'لطفاً ورودی ها را تکمیل نمایید .',
+                            position: 'top-center',
+                            icon: 'error',
+                            iconColor: '#D91E18',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    </script>
+                }
+            }
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-md-5 col-xl-12 col-sm-12">
                         <div class="form-group">
@@ -120,8 +147,9 @@
 </div>
 <!-- END CONTAINER -->
 @section MainScripts{
-    <script src="~/lib/persiandatepicker/calendar.js"></script>
-    <script src="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+    <script src="~/lib/persiandatepicker/calendar.js" asp-append-version="true"></script>
+    <script src="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.js" asp-append-version="true"></script>
+    <script src="~/lib/swalalert/sweetalert.js" asp-append-version="true"></script>
     <!--===================================================================-->
     <!--اسکریپت جستجوی اطلاعات-->
     <script>
@@ -174,11 +202,11 @@
         $('#AddData').click(function () {
             $.blockUI({
                 title: null,
-                message: 'سیستم در حال ثبت اطلاعات. لطفاً منتظر بمانید...',
+                message: 'سیستم در حال پذیرش درخواست شماست. لطفاً منتظر بمانید...',
                 css: {
                     border: 'none',
                     padding: '22px',
-                    backgroundColor: '#26C281',
+                    backgroundColor: '#000',
                     '-webkit-border-radius': '15px',
                     '-moz-border-radius': '15px',
                     allowBodyStretch: true,
@@ -188,10 +216,21 @@
                     cursor: 'wait',
                 }
             });
-            setTimeout($.unblockUI, 1800);
-            setTimeout(() => {
-                document.location.reload();
-            }, 1800);
+            setTimeout($.unblockUI, 2700);
+            // setTimeout(function () {
+            //     Swal.fire({
+            //         title: 'خطا...',
+            //         text: 'لطفاً ورودی ها را تکمیل نمایید .',
+            //         position: 'top-center',
+            //         icon: 'error',
+            //         iconColor: '#D91E18',
+            //         showConfirmButton: false,
+            //         timer: 1000
+            //     })
+            // }, 1000)
+            // setTimeout(() => {
+            //     document.location.reload();
+            // }, 2500);
         });
     </script>
     <!--==================================================================-->

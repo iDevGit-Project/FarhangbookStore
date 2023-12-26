@@ -1,5 +1,6 @@
 ﻿using FarhangbookStore.DataModel;
 using FarhangbookStore.PublicExtentions;
+using FarhangbookStore.Services.EntitiesService;
 using FarhangbookStore.Services.Interface;
 using FarhangbookStore.Services.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,10 @@ builder.Services.AddMvc().AddNToastNotifyNoty(new NotyOptions
 
 builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Arabic }));
 
+#endregion
+
+#region فراخوانی سرویس های مربوط به مدل ها در برنامه
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 #endregion
 
 // Services UnitOfWord for ApplicationDbContext

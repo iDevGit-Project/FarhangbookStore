@@ -19,15 +19,15 @@ namespace FarhangbookStore.DataModel
         #region DbSets All Tables
 
         public DbSet<TBL_Product> TBLProducts { get; set; }
-        public DbSet<TBL_ProductCategory> TBLProductCategory { get; set; }
-        public DbSet<TBL_ProductGallery> TBLProductGallery { get; set; }
-        public DbSet<TBL_ProductReview> TBLProductReview { get; set; }
-        public DbSet<TBL_PropertyName> TBLPropertyName { get; set; }
-        public DbSet<TBL_ProductPrice> TBLProductPrice { get; set; }
-        public DbSet<TBL_PropertyName_Category> TBLPropertyName_Category { get; set; }
-        public DbSet<TBL_PropertyValue> TBLPropertyValue { get; set; }
-        public DbSet<TBL_ProductReating> TBLProductReating { get; set; }
-        public DbSet<TBL_ProductFaviorate> TBLProductFaviorate { get; set; }
+        public DbSet<TBL_ProductCategory> TBLProductCategories { get; set; }
+        public DbSet<TBL_ProductGallery> TBLProductGalleries { get; set; }
+        public DbSet<TBL_ProductReview> TBLProductReviews { get; set; }
+        public DbSet<TBL_PropertyName> TBLPropertyNames { get; set; }
+        public DbSet<TBL_PropertyName_Category> TBLPropertyNameCategories { get; set; }
+        public DbSet<TBL_ProductPrice> TBLProductPrices { get; set; }
+        public DbSet<TBL_PropertyValue> TBLPropertyValueies { get; set; }
+        public DbSet<TBL_ProductReating> TBLProductReatings { get; set; }
+        public DbSet<TBL_ProductFaviorate> TBLProductFaviorates { get; set; }
 
         #endregion
 

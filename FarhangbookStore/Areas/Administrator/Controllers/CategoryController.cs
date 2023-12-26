@@ -1,7 +1,6 @@
 ﻿using FarhangbookStore.DataModel.Entities;
 using FarhangbookStore.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using NToastNotify;
 
 namespace FarhangbookStore.Areas.Administrator.Controllers
 {
@@ -9,46 +8,63 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
     public class CategoryController : Controller
     {
         #region متد های کلاس سازنده کنترلر دسته بندی
-        private readonly IUnitOfWork _iuw;
-        private readonly IToastNotification _toastNotification;
 
-        public CategoryController(IUnitOfWork iuw, IToastNotification toastNotification)
+        private ICategoryService _Categoryservice;
+        public CategoryController(ICategoryService Categoryservice)
         {
-            _iuw = iuw;
-            _toastNotification = toastNotification;
+            _Categoryservice = Categoryservice;
+        }
+        public IActionResult showAllCategory()
+        {
+            return View(_Categoryservice.ShowAllCategory());
         }
         #endregion
 
         #region متد مربوط به ثبت دسته بندی
         [HttpGet]
-        public IActionResult AddCategory()
+        public IActionResult AddCategory(int id)
         {
+            ViewBag.id = id;
             return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult AddCategory(TBL_ProductCategory model)
+        [HttpPost]
+        public IActionResult AddCategory(TBL_ProductCategory category)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _iuw.productCategoryUW.Create(model);
-                _toastNotification.AddSuccessToastMessage("ثبت دسته بندی با موفقیت انجام شد.", new NotyOptions()
-                {
-                    ProgressBar = true,
-                    Timeout = 1000,
-                    Layout = "topCenter",
-                    Theme = "metroui"
-                });
-                _iuw.Save();
-                return RedirectToAction("AddCategory", "Category");
+                ViewBag.id = category.SubCategory;
+                return View(category);
             }
 
-            return View(model);
+            if (_Categoryservice.ExistCategory(category.CategoryFaTitle, category.CategoryEnTitle, 0))
+            {
+                ModelState.AddModelError("CategoryFaTitle", "خطا... دسته بندی وارد شده تکراری است .");
+                ViewBag.id = category.SubCategory;
+                return View(category);
+            }
+
+            int cateid = _Categoryservice.AddCategory(category);
+            TempData["Result"] = cateid > 0 ? "true" : "false";
+
+            return RedirectToAction(nameof(AddCategory));
         }
         #endregion
-        public IActionResult Index()
+
+        #region متد مربوط به نمایش زیردسته ها
+        [HttpGet]
+        public IActionResult ShowAllSubCategory(int id)
         {
-            return View();
+            ViewBag.id = id;
+            return View(_Categoryservice.showAllSubCategory(id));
         }
+
+        [HttpGet]
+        public IActionResult ShowAllSubCategorythree(int id)
+        {
+            ViewBag.id = id;
+            return View(_Categoryservice.showAllSubCategory(id));
+        }
+        #endregion
     }
 }
