@@ -1,0 +1,114 @@
+﻿@using FarhangbookStore.DataModel.Entities;
+@model IEnumerable<TBL_ProductCategory>
+@{
+    ViewData["Title"] = "نمایش کلیه دسته بندی ها | فروشگاه اینترنتی کتابفروشی فرهنگ";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="m-heading-1 border-yellow-crusta m-bordered">
+    <h4 class="bold">راهنما</h4>
+    <p>
+        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت اطلاعات کتاب جدید، <span class="bold">فیلترکردن، ویرایش و غیرفعالسازی</span> اطلاعات کتاب را انجام دهید.
+    </p>
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="portlet light portlet-fit portlet-datatable bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class=" icon-layers font-green"></i>
+            <span class="caption-subject font-green-sharp bold uppercase">مدیریت دسته بندی ها</span>
+        </div>
+        <div class="actions">
+            <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
+            <a asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" role="button" class="btn green-jungle"> ثبت دسته بندی جدید <i class="fa fa-plus ml-2"></i></a>
+            @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
+            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline"> بازگشت </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <table id="Datatable_infoTable" class="table table-bordered table-striped table-condensed flip-content table-hover table-header-fixed">
+            <thead>
+                <tr class="thColor">
+                    <th>ردیف</th>
+                    <th>نام دسته بندی به فارسی</th>
+                    <th>نام دسته بندی به انگلیسی</th>
+                    <th>مدیریت زیردسته ها</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Categoryid</td>
+                        <td>@item.CategoryFaTitle</td>
+                        <td class="EN__Font">@item.CategoryEnTitle</td>
+                        <td><a href="/Administrator/Category/showAllCategory/@item.SubCategory" class="btn btn-outline green-jungle"> نمایش زیردسته ها <i class="icon-layers"></i></a></td>
+                        <td>
+                            <a class="btn green-haze btn-circle btn-icon-only btn-default">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#modal-action-news">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END CONTAINER -->
+@section MainScripts{
+    <script src="~/lib/persiandatepicker/calendar.js"></script>
+    <script src="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+    <!--===================================================================-->
+    <!--اسکریپت جستجوی اطلاعات-->
+    <script>
+        var infoDataTable = $('#Datatable_infoTable').DataTable({
+            paging: true,
+            // نمایش اطلاعات جستجو شده در زیر جدول به صورت فارسی
+            "language": {
+                "url": "\\Admin\\datatables\\fa.json"
+            }
+        });
+        $('#customerSearch').keyup(function () {
+            infoDataTable.search($(this).val()).draw();
+        });
+        // مرتب سازی اطلاعات ردیف جدول
+        infoDataTable.on('order.dt search.dt', function () {
+            let i = 1;
+            // مرتب سازی از ستون 0 که اولین ستون جدول است انجام شود
+            infoDataTable.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
+    </script>
+    <script>
+        // تنظیمات مربوط به عملیات  خواندن داده ها به همراه رابط گرافیکی انیمیشن
+        $('#Refresh_blockui').click(function () {
+            $.blockUI({
+                title: null,
+                message: 'سیستم در حال پذیرش درخواست شماست. لطفاً منتظر بمانید...',
+                css: {
+                    border: 'none',
+                    padding: '22px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '15px',
+                    '-moz-border-radius': '15px',
+                    allowBodyStretch: true,
+                    opacity: .7,
+                    textAlign: 'center',
+                    color: '#fff',
+                    cursor: 'wait',
+                }
+            });
+            setTimeout($.unblockUI, 2500);
+            setTimeout(() => {
+                document.location.reload();
+            }, 2500);
+        });
+    </script>
+    <!--==================================================================-->
+}
+

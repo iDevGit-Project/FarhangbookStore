@@ -1,6 +1,7 @@
 ﻿using FarhangbookStore.DataModel.Entities;
 using FarhangbookStore.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 
 namespace FarhangbookStore.Areas.Administrator.Controllers
 {
@@ -10,9 +11,11 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         #region متد های کلاس سازنده کنترلر دسته بندی
 
         private ICategoryService _Categoryservice;
-        public CategoryController(ICategoryService Categoryservice)
+        private readonly IToastNotification _toastNotification;
+        public CategoryController(ICategoryService Categoryservice, IToastNotification toastNotification)
         {
             _Categoryservice = Categoryservice;
+            _toastNotification = toastNotification;
         }
         public IActionResult showAllCategory()
         {
@@ -45,6 +48,13 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             }
 
             int cateid = _Categoryservice.AddCategory(category);
+            _toastNotification.AddSuccessToastMessage("ثبت دسته بندی با موفقیت انجام شد.", new NotyOptions()
+            {
+                ProgressBar = true,
+                Timeout = 1100,
+                Layout = "topCenter",
+                Theme = "metroui"
+            });
             TempData["Result"] = cateid > 0 ? "true" : "false";
 
             return RedirectToAction(nameof(AddCategory));
