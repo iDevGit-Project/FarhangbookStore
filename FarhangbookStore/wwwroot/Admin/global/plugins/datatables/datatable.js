@@ -49,7 +49,7 @@ $(document).ready(function () {
 		"order": [
 			[2, 'asc']
 		],
-		"displayLength": 5,
+		"displayLength": 10,
 		"autoWidth" : false,
 		"drawCallback": function (settings) {
 			var api = this.api();

@@ -22,13 +22,13 @@
             <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
             <a asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" role="button" class="btn green-jungle"> ثبت دسته بندی جدید <i class="fa fa-plus ml-2"></i></a>
             @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
-            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline"> بازگشت </a>
+            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline"> بازگشت به صفحه مدیریت </a>
         </div>
     </div>
     <div class="portlet-body">
         <table id="Datatable_infoTable" class="table table-bordered table-striped table-condensed flip-content table-hover table-header-fixed">
             <thead>
-                <tr class="thColor">
+                <tr class="font-white">
                     <th>ردیف</th>
                     <th>نام دسته بندی به فارسی</th>
                     <th>نام دسته بندی به انگلیسی</th>
@@ -43,7 +43,7 @@
                         <td>@item.Categoryid</td>
                         <td>@item.CategoryFaTitle</td>
                         <td class="EN__Font">@item.CategoryEnTitle</td>
-                        <td><a href="/Administrator/Category/showAllCategory/@item.SubCategory" class="btn btn-outline green-jungle"> نمایش زیردسته ها <i class="icon-layers"></i></a></td>
+                        <td><a href="/Administrator/Category/showAllCategory/@item.SubCategory" class="btn btn-outline green-jungle">زیردسته: <span class="font-blue-ebonyclay bold">@item.CategoryFaTitle</span></a></td>
                         <td>
                             <a class="btn green-haze btn-circle btn-icon-only btn-default">
                                 <i class="fa fa-pencil"></i>
@@ -67,6 +67,7 @@
     <script>
         var infoDataTable = $('#Datatable_infoTable').DataTable({
             paging: true,
+            // pageLength: 5,
             // نمایش اطلاعات جستجو شده در زیر جدول به صورت فارسی
             "language": {
                 "url": "\\Admin\\datatables\\fa.json"
