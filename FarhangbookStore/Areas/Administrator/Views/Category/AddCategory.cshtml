@@ -54,6 +54,7 @@
         } *@
         <!-- PERSONAL INFO TAB -->
         <form asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" enctype="multipart/form-data">
+            <!-- دسته بندی اصلی جهت اضافه کردن زیردسته ID بازگشت مقدار  -->
             @if (ViewBag.id != 0)
             {
                 <input type="hidden" asp-for="SubCategory" value="@ViewBag.id" />

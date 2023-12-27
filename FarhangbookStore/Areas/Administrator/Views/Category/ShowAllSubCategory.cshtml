@@ -1,14 +1,14 @@
 ﻿@using FarhangbookStore.DataModel.Entities;
 @model IEnumerable<TBL_ProductCategory>
 @{
-    ViewData["Title"] = "نمایش کلیه دسته بندی ها | فروشگاه اینترنتی کتابفروشی فرهنگ";
+    ViewData["Title"] = "نمایش کلیه زیردسته ها | فروشگاه اینترنتی کتابفروشی فرهنگ";
     Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="m-heading-1 border-yellow-crusta m-bordered">
     <h4 class="bold">راهنما</h4>
     <p>
-        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت ، <span class="bold">منوی زیردسته مربوطه</span> مدیریت دسته های اصلی دیگر را هم ببینید.
+        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت اطلاعات کتاب جدید، <span class="bold">فیلترکردن، ویرایش و غیرفعالسازی</span> مدیریت دسته های اصلی دیگر را هم ببینید.
     </p>
 </div>
 <!-- BEGIN CONTAINER -->
@@ -16,13 +16,13 @@
     <div class="portlet-title">
         <div class="caption">
             <i class=" icon-layers font-green"></i>
-            <span class="caption-subject font-green-sharp bold uppercase">مدیریت دسته بندی ها</span>
+            <span class="caption-subject font-green-sharp bold uppercase">مدیریت زیردسته های منوی <span class="bg-green-jungle bg-font-green-jungle badge"></span></span>
         </div>
         <div class="actions">
             <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
-            <a asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" role="button" class="btn green-jungle"> ثبت دسته بندی جدید <i class="fa fa-plus ml-2"></i></a>
+            <a href="/Administrator/Category/AddCategory/@ViewBag.id" role="button" class="btn green-jungle"> ثبت زیردسته <i class="fa fa-plus ml-2"></i></a>
             @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
-            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline"> بازگشت </a>
+            <a asp-area="Administrator" asp-controller="Category" asp-action="showAllCategory" role="button" class="btn dark btn-outline"> بازگشت به منوها </a>
         </div>
     </div>
     <div class="portlet-body">
@@ -30,9 +30,9 @@
             <thead>
                 <tr class="font-white">
                     <th>ردیف</th>
-                    <th>نام دسته بندی به فارسی</th>
-                    <th>نام دسته بندی به انگلیسی</th>
-                    <th>مدیریت زیردسته ها</th>
+                    <th>نام زیردسته به فارسی</th>
+                    <th>نام زیردسته به انگلیسی</th>
+                    <th>نام دسته بندی اصلی</th>
                     <th>عملیات</th>
                 </tr>
             </thead>
@@ -43,7 +43,7 @@
                         <td>@item.Categoryid</td>
                         <td>@item.CategoryFaTitle</td>
                         <td class="EN__Font">@item.CategoryEnTitle</td>
-                        <td><a href="/Administrator/Category/ShowAllSubCategory/@item.Categoryid" class="btn btn-outline green-jungle">زیردسته: <span class="font-blue-ebonyclay bold">@item.CategoryFaTitle</span></a></td>
+                        <td><a href="/Administrator/Category/ShowAllSubCategorythree/@item.Categoryid" class="btn btn-outline green-jungle"><span class="font-blue-ebonyclay bold">@item.CategoryFaTitle</span></a></td>
                         <td>
                             <a class="btn green-haze btn-circle btn-icon-only btn-default">
                                 <i class="fa fa-pencil"></i>
