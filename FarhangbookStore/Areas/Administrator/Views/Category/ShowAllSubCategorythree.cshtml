@@ -19,33 +19,34 @@
             <span class="caption-subject font-green-sharp bold uppercase">مدیریت زیردسته نهایی منوی <span class="bg-green-jungle bg-font-green-jungle badge"></span></span>
         </div>
         <div class="actions">
-            <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
-            <a asp-area="Administrator" asp-controller="Category" asp-action="showAllCategory" role="button" class="btn dark btn-outline"> بازگشت به منوهای اصلی</a>
+            <a href="#" role="button" class="btn btn-outline red-thunderbird popovers" data-trigger="hover" data-placement="top" data-content="تازه سازی اطلاعات در مواقع ضروری" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
+            <a href="/Administrator/Category/AddCategory/@ViewBag.id" role="button" class="btn green-jungle"> ثبت زیردسته نهایی<i class="fa fa-plus ml-2"></i></a>
+            <a asp-area="Administrator" asp-controller="Category" asp-action="showAllCategory" role="button" class="btn dark btn-outline popovers" data-trigger="hover" data-placement="top" data-content="بازگشت به جدول منو های ثبت شده در سایت"> بازگشت </a>
         </div>
     </div>
     <div class="portlet-body">
         <table id="Datatable_infoTable" class="table table-bordered table-striped table-condensed flip-content table-hover table-header-fixed">
             <thead>
                 <tr class="font-white">
-                    <th>ردیف</th>
-                    <th>نام زیردسته به فارسی</th>
-                    <th>نام زیردسته به انگلیسی</th>
-                    <th>عملیات</th>
+                    <th class="text-center">ردیف</th>
+                    <th class="text-center">نام زیردسته به فارسی</th>
+                    <th class="text-center">نام زیردسته به انگلیسی</th>
+                    <th class="text-center">عملیات</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Categoryid</td>
-                        <td>@item.CategoryFaTitle</td>
-                        <td class="EN__Font">@item.CategoryEnTitle</td>
-                        <td>
-                            <a class="btn green-haze btn-circle btn-icon-only btn-default">
+                        <td class="text-center">@item.Categoryid</td>
+                        <td class="text-center">@item.CategoryFaTitle</td>
+                        <td class="EN__Font text-right">@item.CategoryEnTitle</td>
+                        <td class="text-center">
+                            <a class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#modal-action-news">
-                                <i class="fa fa-trash-o"></i>
+                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
+                                <i class="fa fa-ban"></i>
                             </a>
                         </td>
                     </tr>

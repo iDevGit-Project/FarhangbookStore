@@ -48,7 +48,7 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             }
 
             int cateid = _Categoryservice.AddCategory(category);
-            _toastNotification.AddSuccessToastMessage("ثبت دسته بندی با موفقیت انجام شد.", new NotyOptions()
+            _toastNotification.AddSuccessToastMessage("ثبت اطلاعات با موفقیت انجام شد.", new NotyOptions()
             {
                 ProgressBar = true,
                 Timeout = 1100,

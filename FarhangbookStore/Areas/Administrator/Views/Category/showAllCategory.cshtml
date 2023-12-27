@@ -19,37 +19,37 @@
             <span class="caption-subject font-green-sharp bold uppercase">مدیریت دسته بندی ها</span>
         </div>
         <div class="actions">
-            <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
+            <a href="#" role="button" class="btn btn-outline red-thunderbird popovers" data-trigger="hover" data-placement="top" data-content="تازه سازی اطلاعات در مواقع ضروری" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
             <a asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" role="button" class="btn green-jungle"> ثبت دسته بندی جدید <i class="fa fa-plus ml-2"></i></a>
             @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
-            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline"> بازگشت </a>
+            <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline popovers" data-trigger="hover" data-placement="top" data-content="بازگشت به پنل مدیریت"> بازگشت </a>
         </div>
     </div>
     <div class="portlet-body">
         <table id="Datatable_infoTable" class="table table-bordered table-striped table-condensed flip-content table-hover table-header-fixed">
             <thead>
                 <tr class="font-white">
-                    <th>ردیف</th>
-                    <th>نام دسته بندی به فارسی</th>
-                    <th>نام دسته بندی به انگلیسی</th>
-                    <th>مدیریت زیردسته ها</th>
-                    <th>عملیات</th>
+                    <th class="text-center">ردیف</th>
+                    <th class="text-center">نام دسته بندی به فارسی</th>
+                    <th class="text-center">نام دسته بندی به انگلیسی</th>
+                    <th class="text-center">مدیریت زیردسته ها</th>
+                    <th class="text-center">عملیات</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Categoryid</td>
+                        <td class="text-center">@item.Categoryid</td>
                         <td>@item.CategoryFaTitle</td>
-                        <td class="EN__Font">@item.CategoryEnTitle</td>
-                        <td><a href="/Administrator/Category/ShowAllSubCategory/@item.Categoryid" class="btn btn-outline green-jungle">زیردسته: <span class="font-blue-ebonyclay bold">@item.CategoryFaTitle</span></a></td>
-                        <td>
-                            <a class="btn green-haze btn-circle btn-icon-only btn-default">
+                        <td class="EN__Font text-right">@item.CategoryEnTitle</td>
+                        <td><a href="/Administrator/Category/ShowAllSubCategory/@item.Categoryid" class="btn btn-outline green-jungle">ورود به زیردسته : <span class="font-blue-ebonyclay bold">@item.CategoryFaTitle</span></a></td>
+                        <td class="text-center">
+                            <a href="/Administrator/Category/ShowAllCategory/@item.Categoryid" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default" data-toggle="modal" data-target="#modal-action-news">
-                                <i class="fa fa-trash-o"></i>
+                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
+                                <i class="fa fa-ban"></i>
                             </a>
                         </td>
                     </tr>
