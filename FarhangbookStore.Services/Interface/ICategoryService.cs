@@ -14,6 +14,11 @@ namespace FarhangbookStore.Services.Interface
         int AddCategory(TBL_ProductCategory category);
 
         bool UpdateCategory(TBL_ProductCategory category);
+
+        bool UpdateSubTwoCategory(TBL_ProductCategory category);
+
+        bool UpdateSubThreeCategory(TBL_ProductCategory category);
+
         bool DeleteCategory(TBL_ProductCategory category);
 
         List<TBL_ProductCategory> showAllSubCategory(int categoryid);

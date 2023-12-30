@@ -24,25 +24,6 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         }
         #endregion
 
-
-        #region متد مربوط به نمایش زیردسته دوم
-        [HttpGet]
-        public IActionResult ShowAllSubCategory(int id)
-        {
-            ViewBag.id = id;
-            return View(_CategoryService.showAllSubCategory(id));
-        }
-        #endregion
-
-        #region متد مربوط به نمایش زیردسته سوم
-        [HttpGet]
-        public IActionResult ShowAllSubCategorythree(int id)
-        {
-            ViewBag.id = id;
-            return View(_CategoryService.showAllSubCategory(id));
-        }
-        #endregion
-
         #region متد مربوط به ثبت دسته بندی
         // در صورتی که بخواهیم از انتقال فرم جهت ثبت اطلاعات استفاده کنیم از این ویژه گی بهره می بریم
         [HttpGet]
@@ -71,7 +52,7 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             int cateid = _CategoryService.AddCategory(category);
             TempData["Result"] = cateid > 0 ? "true" : "false";
 
-            return RedirectToAction(nameof(showAllCategory));
+            return RedirectToAction(nameof(AddCategory));
         }
         #endregion
 
@@ -126,6 +107,24 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             bool getDeleteCategoryid = _CategoryService.DeleteCategory(category);
             int sendjson = getDeleteCategoryid ? 3 : 4;
             return Json(sendjson);
+        }
+        #endregion
+
+        #region متد مربوط به نمایش زیردسته دوم
+        [HttpGet]
+        public IActionResult ShowAllSubCategory(int id)
+        {
+            ViewBag.id = id;
+            return View(_CategoryService.showAllSubCategory(id));
+        }
+        #endregion
+
+        #region متد مربوط به نمایش زیردسته سوم
+        [HttpGet]
+        public IActionResult ShowAllSubCategorythree(int id)
+        {
+            ViewBag.id = id;
+            return View(_CategoryService.showAllSubCategory(id));
         }
         #endregion
     }

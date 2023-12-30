@@ -75,6 +75,35 @@ namespace FarhangbookStore.Services.EntitiesService
             }
         }
 
+        public bool UpdateSubTwoCategory(TBL_ProductCategory category)
+        {
+            try
+            {
+                _Context.TBLProductCategories.Update(category);
+                _Context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateSubThreeCategory(TBL_ProductCategory category)
+        {
+            try
+            {
+                _Context.TBLProductCategories.Update(category);
+                _Context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
         public bool ExistCategory(string fatitle, string entitle, int cateid)
         {
             return _Context.TBLProductCategories.Any(c => c.CategoryFaTitle == fatitle && c.CategoryEnTitle == entitle && c.Categoryid != cateid && !c.IsDelete);

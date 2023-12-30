@@ -35,32 +35,41 @@
     </div>
     <div class="portlet-body">
         <!--نمایش پیغام موفقیت آمیز بودن ثبت یا خطای درج اطلاعات در برنامه-->
-@*         @if (TempData["Result"] != null)
+        @if (TempData["Result"] != null)
         {
             if (TempData["Result"].ToString() == "true")
             {
                 <script>
-
                     setTimeout(function () {
                         Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'اسلایدری با این مشخصات یافت نشد .',
+                            position: 'center',
+                            icon: 'success',
+                            title: 'دسته بندی ثبت شد.',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 1800
                         })
-                    }, 50)
 
+                    }, 50)
                 </script>
             }
             else
             {
-                <div class="alert alert-danger bg-red-thunderbird bg-font-red-thunderbird alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    خطادر انجام عملیات .
-                </div>
+                <script>
+                    setTimeout(function () {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'عملیات با خطا مواجه شد .',
+                            showConfirmButton: false,
+                            timer: 1800
+                        })
+
+                    }, 50)
+                    @*                     setTimeout(function () { window.location.reload() }, 1890)
+                break; *@
+                </script>
             }
-        } *@
+        }
         <!-- PERSONAL INFO TAB -->
         <form asp-area="Administrator" asp-controller="Category" asp-action="AddCategory" enctype="multipart/form-data">
             <!-- دسته بندی اصلی جهت اضافه کردن زیردسته ID بازگشت مقدار  -->
