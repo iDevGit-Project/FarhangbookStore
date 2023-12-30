@@ -30,6 +30,9 @@ namespace FarhangbookStore.DataModel.Entities
 
         public bool IsDelete { get; set; }
 
+        //وضعیت موجود یا عدم موجودی کالا
+        //public bool IsInStock { get; set; }
+
         #region Relation
 
         public List<TBL_Product> TBLProducts { get; set; }

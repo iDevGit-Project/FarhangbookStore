@@ -136,8 +136,7 @@ body {
 .btn-group > .dropdown-menu,
 .dropdown-menu,
 .md-shadow-z-2-i {
-    box-shadow: 0 2px 3px 2px rgb(0 0 0 / 3%);
-    ;
+    box-shadow: 0 10px 40px 4px rgb(0 0 0 / 19%);
 }
 
 .btn:not(.md-skip):hover,
@@ -7750,10 +7749,10 @@ li [class^="icon-"] {
     padding: 0;
     background-color: #ffffff;
     font-weight: 600;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
 }
 
     .dropdown-menu li.divider {
@@ -7795,8 +7794,8 @@ li [class^="icon-"] {
     .dropdown-menu > li:hover > a {
         text-decoration: none;
         background-image: none;
-        background-color: #fbfcfd;
-        color: #3f51b5;
+        background-color: #f2f6f9;
+        color: #212121;
         filter: none;
     }
 
@@ -10932,7 +10931,7 @@ body[ng-controller] .modal {
         }
 
             .portlet.light.bordered > .portlet-title {
-                border-bottom: 1px solid #eef1f5;
+                border-bottom: 1px solid #f3f5f9;
             }
 
         .portlet.light.bg-inverse {
@@ -11145,7 +11144,7 @@ body[ng-controller] .modal {
 /*        padding-top: 10px;
         padding-bottom: 25px;*/
         padding-top: 5px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
 
 .tab-pane > p:last-child {
@@ -18074,7 +18073,7 @@ body[ng-controller] .modal {
 
 .table .btn {
     margin-right: 0;
-    margin-left: 5px;
+    margin-left: 2px;
 }
 
 .table thead tr th {

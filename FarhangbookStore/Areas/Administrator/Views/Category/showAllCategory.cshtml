@@ -67,9 +67,10 @@
             <thead>
                 <tr class="font-white">
                     <th class="text-center">ردیف</th>
-                    <th class="text-center">نام دسته بندی به فارسی</th>
+                    <th class="text-center">دسته بندی به فارسی</th>
                     <th class="text-center EN__Font">Category name in English</th>
-                    <th class="text-center">مدیریت زیردسته ها</th>
+                    <th class="text-center">زیردسته ها</th>
+                    <th class="text-center">وضعیت کالا</th>
                     <th class="text-center">عملیات</th>
                 </tr>
             </thead>
@@ -81,6 +82,7 @@
                         <td class="text-center">@item.CategoryFaTitle</td>
                         <td class="text-center EN__Font">@item.CategoryEnTitle</td>
                         <td><a href="/Administrator/Category/ShowAllSubCategory/@item.Categoryid" class="btn btn-outline green-jungle btn-block">ورود به زیردسته : <span class="font-blue-ebonyclay bold">@item.CategoryFaTitle</span></a></td>
+                        <td class="text-center EN__Font">@item.CategoryEnTitle</td>
                         <td class="text-center">
                             <a href="#showmodal=/Administrator/Category/UpdateCategory/@item.Categoryid" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                 <i class="fa fa-pencil"></i>
