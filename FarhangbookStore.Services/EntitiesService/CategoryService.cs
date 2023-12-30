@@ -35,6 +35,7 @@ namespace FarhangbookStore.Services.EntitiesService
         {
             try
             {
+                category.IsDelete = true;
                 _Context.TBLProductCategories.Update(category);
                 _Context.SaveChanges();
                 return true;
@@ -60,7 +61,7 @@ namespace FarhangbookStore.Services.EntitiesService
             return _Context.TBLProductCategories.Where(c => !c.IsDelete && c.SubCategory == categoryid).ToList();
         }
 
-        public bool updatecategory(TBL_ProductCategory category)
+        public bool UpdateCategory(TBL_ProductCategory category)
         {
             try
             {
@@ -76,7 +77,7 @@ namespace FarhangbookStore.Services.EntitiesService
 
         public bool ExistCategory(string fatitle, string entitle, int cateid)
         {
-            return _Context.TBLProductCategories.Any(c => c.CategoryFaTitle == fatitle && c.CategoryEnTitle == entitle && c.Categoryid != cateid);
+            return _Context.TBLProductCategories.Any(c => c.CategoryFaTitle == fatitle && c.CategoryEnTitle == entitle && c.Categoryid != cateid && !c.IsDelete);
         }
 
         public List<TBL_ProductCategory> Showsubcategory()

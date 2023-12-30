@@ -1,7 +1,7 @@
 ﻿<div class="btn-group">
     <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
             data-hover="dropdown" data-close-others="true">
-        <span class="hidden-sm hidden-xs">دسترسی سریع&nbsp;</span>
+        <span class="hidden-sm hidden-xs">ثبت و دسترسی سریع&nbsp;</span>
         <i class="fa fa-angle-down"></i>
     </button>
     <ul class="dropdown-menu" role="menu">
@@ -11,8 +11,18 @@
             </a>
         </li>
         <li>
+            <a asp-area="Administrator" asp-controller="Category" asp-action="AddCategory">
+                ثبت دسته بندی جدید
+            </a>
+        </li>
+        <li>
             <a href="javascript:;">
-                ثبت گروه بندی جدید
+                ثبت اسلایدر جدید
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;">
+                ثبت ویژه گی جدید
             </a>
         </li>
         <li>
@@ -22,12 +32,18 @@
         </li>
         <li>
             <a href="javascript:;">
-                پیگیری فروش ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i>
+                ارسال پیامک
+                <span class="badge badge-info">مشتریان و کاربران</span>
             </a>
         </li>
         <li>
             <a href="javascript:;">
-                پیگیری سفارشات <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i>
+                ارسال ایمیل
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;">
+                پیگیری آخرین سفارشات<i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i>
             </a>
         </li>
         <li class="divider"> </li>

@@ -13,14 +13,14 @@ namespace FarhangbookStore.DataModel.Entities
         [Key]
         public int Categoryid { get; set; }
 
-        [Display(Name = "عنوان دسته بندی به فارسی")]
+        [Display(Name = "دسته بندی به فارسی")]
         [Required(ErrorMessage = "وارد کردن {0} اجباری می باشد .")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1} باشد")]
         [MaxLength(100, ErrorMessage = "{0} نمیتواند بیشتر از {1} باید")]
         public string CategoryFaTitle { get; set; }
 
 
-        [Display(Name = "عنوان دسته بندی به انگلیسی")]
+        [Display(Name = "دسته بندی به انگلیسی")]
         [Required(ErrorMessage = "وارد کردن {0} اجباری می باشد .")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1} باشد")]
         [MaxLength(100, ErrorMessage = "{0} نمیتواند بیشتر از {1} باید")]

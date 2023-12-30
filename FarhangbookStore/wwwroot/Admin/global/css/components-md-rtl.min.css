@@ -63,7 +63,8 @@ h6 {
 }
 
 .EN__Font {
-    font-family: "SFProDisplay-Semibold";
+    font-family: "SFProDisplay-Regular";
+    font-weight: 600;
     direction: ltr;
 }
 
@@ -7412,7 +7413,7 @@ li [class^="icon-"] {
     overflow: hidden;
     position: relative;
     user-select: none;
-    padding: 8px 14px 7px;
+    padding: 10px 14px 7px;
 }
 
 .btn-theme-panel .btn:not(.md-skip),
