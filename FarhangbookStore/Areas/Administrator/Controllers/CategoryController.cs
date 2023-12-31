@@ -119,6 +119,35 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         }
         #endregion
 
+        #region متد مربوط به ویرایش دسته بندی سطح دوم
+
+        [HttpGet]
+        public IActionResult UpdateSubTwoCategory(int id)
+        {
+
+            return PartialView("_ModalUpdateSubLastCategory", _CategoryService.findcategorybuyeid(id));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateSubTwoCategory(TBL_ProductCategory category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(ShowAllSubCategory));
+            }
+            if (_CategoryService.ExistCategory(category.CategoryFaTitle, category.CategoryEnTitle, category.Categoryid))
+            {
+                return RedirectToAction(nameof(ShowAllSubCategory));
+            }
+            // در برنامه می باشد که با اعداد 1و2و3و4 مشخص شده است SweetAlert این متد برای نمایش پیغام های کلاس
+            // مراجعه کنید OpenModal.js جهت اطلاعات بیشتر به فایل جاوااسکریپت مربوط به پروژه به نام
+            // نامی دلخواه است getUpdateCategoryid متد 
+            bool getUpdateCategoryid = _CategoryService.UpdateCategory(category);
+            int sendjson = getUpdateCategoryid ? 2 : 4;
+            return Json(sendjson);
+        }
+        #endregion
+
         #region متد مربوط به نمایش زیردسته سوم
         [HttpGet]
         public IActionResult ShowAllSubCategorythree(int id)
