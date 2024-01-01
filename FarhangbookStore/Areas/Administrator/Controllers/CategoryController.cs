@@ -155,6 +155,35 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             ViewBag.id = id;
             return View(_CategoryService.showAllSubCategory(id));
         }
-        #endregion
-    }
+		#endregion
+
+		#region متد مربوط به ویرایش دسته بندی سطح سوم
+
+		[HttpGet]
+		public IActionResult UpdateSubThreeCategory(int id)
+		{
+
+			return PartialView("_ModalUpdateSubLastCategory", _CategoryService.findcategorybuyeid(id));
+		}
+
+		[HttpPost]
+		public IActionResult UpdateSubThreeCategory(TBL_ProductCategory category)
+		{
+			if (!ModelState.IsValid)
+			{
+				return RedirectToAction(nameof(ShowAllSubCategory));
+			}
+			if (_CategoryService.ExistCategory(category.CategoryFaTitle, category.CategoryEnTitle, category.Categoryid))
+			{
+				return RedirectToAction(nameof(ShowAllSubCategory));
+			}
+			// در برنامه می باشد که با اعداد 1و2و3و4 مشخص شده است SweetAlert این متد برای نمایش پیغام های کلاس
+			// مراجعه کنید OpenModal.js جهت اطلاعات بیشتر به فایل جاوااسکریپت مربوط به پروژه به نام
+			// نامی دلخواه است getUpdateCategoryid متد 
+			bool getUpdateCategoryid = _CategoryService.UpdateCategory(category);
+			int sendjson = getUpdateCategoryid ? 2 : 4;
+			return Json(sendjson);
+		}
+		#endregion
+	}
 }

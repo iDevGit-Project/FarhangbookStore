@@ -61,7 +61,12 @@ namespace FarhangbookStore.Services.EntitiesService
             return _Context.TBLProductCategories.Where(c => !c.IsDelete && c.SubCategory == categoryid).ToList();
         }
 
-        public bool UpdateCategory(TBL_ProductCategory category)
+		public List<TBL_ProductCategory> showAllSubThreeCategory(int categoryid)
+		{
+			return _Context.TBLProductCategories.Where(c => !c.IsDelete && c.SubCategory == categoryid).ToList();
+		}
+
+		public bool UpdateCategory(TBL_ProductCategory category)
         {
             try
             {

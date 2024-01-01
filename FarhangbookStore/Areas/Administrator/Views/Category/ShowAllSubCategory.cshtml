@@ -1,7 +1,7 @@
 ﻿@using FarhangbookStore.DataModel.Entities;
 @model IEnumerable<TBL_ProductCategory>
 @{
-    ViewData["Title"] = "نمایش کلیه زیردسته ها | فروشگاه اینترنتی کتابفروشی فرهنگ";
+    ViewData["Title"] = "نمایش کلیه زیردسته ها | فروشگاه اینترنتی بانک کتاب شیراز";
     Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -21,7 +21,7 @@
         <div class="actions">
             <a href="#" role="button" class="btn btn-outline red-thunderbird popovers" data-trigger="hover" data-placement="top" data-content="تازه سازی اطلاعات در مواقع ضروری" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
             <a href="/Administrator/Category/AddCategory/@ViewBag.id" role="button" class="btn green-jungle"> ثبت زیردسته دوم <span></span><i class="fa fa-plus ml-2"></i></a>
-            @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
+            @*<a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
             <a asp-area="Administrator" asp-controller="Category" asp-action="showAllCategory" role="button" class="btn dark btn-outline popovers" data-trigger="hover" data-placement="top" data-content="بازگشت به جدول زیرمنوهای سطح اول"> بازگشت به زیرمنوهای سطح اول </a>
         </div>
     </div>
@@ -48,7 +48,7 @@
                             <a href="#showmodal=/Administrator/Category/UpdateSubTwoCategory/@item.Categoryid" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
+                            <a href="#showmodal=/Administrator/Category/DeleteCategory/@item.Categoryid" class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
                                 <i class="fa fa-ban"></i>
                             </a>
                         </td>

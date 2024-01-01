@@ -7,6 +7,9 @@
 
 <form asp-action="UpdateSubTwoCategory" method="post" data-ajax="true" data-Success="Refresh" enctype="multipart/form-data">
 	<div class="modal-body">
+		<!--نمایش آی دی زیردسته دوم جهت ویرایش-->
+		<input type="hidden" asp-for="SubCategory" />
+		<!--نمایش آی دی زیردسته اول جهت یافتن آی دی دوم-->
 		<input type="hidden" asp-for="Categoryid" />
 		<div class="d-flex flex-column nav-group nav-group-outline mx-auto mb-10 p-10">
 			<div class="row mt-10">

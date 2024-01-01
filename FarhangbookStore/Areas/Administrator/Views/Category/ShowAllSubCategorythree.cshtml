@@ -1,7 +1,7 @@
 ﻿@using FarhangbookStore.DataModel.Entities;
 @model IEnumerable<TBL_ProductCategory>
 @{
-    ViewData["Title"] = "نمایش کلیه زیردسته ها | فروشگاه اینترنتی کتابفروشی فرهنگ";
+    ViewData["Title"] = "نمایش کلیه زیردسته ها | فروشگاه اینترنتی بانک کتاب شیراز";
     Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -42,11 +42,11 @@
                         <td class="text-center">@item.Categoryid</td>
                         <td class="text-center">@item.CategoryFaTitle</td>
                         <td class="text-center EN__Font">@item.CategoryEnTitle</td>
-ظ                        <td class="text-center">
-                            <a class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
+                        <td class="text-center">
+                            <a href="#showmodal=/Administrator/Category/UpdateSubThreeCategory/@item.Categoryid" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
+                            <a href="#showmodal=/Administrator/Category/DeleteCategory/@item.Categoryid" class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
                                 <i class="fa fa-ban"></i>
                             </a>
                         </td>
@@ -55,11 +55,16 @@
             </tbody>
         </table>
     </div>
+    <partial name="_AdminMainModal" />
 </div>
 <!-- END CONTAINER -->
-@section MainScripts{
-    <script src="~/lib/persiandatepicker/calendar.js"></script>
-    <script src="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+@section MainScripts {
+    <script src="~/lib/persiandatepicker/calendar.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/lib/persiandatepicker/jquery.Bootstrap-PersianDateTimePicker.js" asp-append-version="true"></script>
+    <script src="~/lib/OpenModal.js" asp-append-version="true"></script>
+    <script src="~/lib/SwalAlert/sweetAlert.js" asp-append-version="true"></script>
     <!--===================================================================-->
     <!--اسکریپت جستجوی اطلاعات-->
     <script>
