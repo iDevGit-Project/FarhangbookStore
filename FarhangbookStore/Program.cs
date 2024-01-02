@@ -68,6 +68,10 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 // Services UnitOfWord for ApplicationDbContext
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IWriterService, WriterService>();
+builder.Services.AddScoped<IProductSizeBookService, ProductSizeBookService>();
+builder.Services.AddScoped<IPublisherService, PublisherService>();
 
 //Services DataBase
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

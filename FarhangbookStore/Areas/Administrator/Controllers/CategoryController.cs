@@ -12,11 +12,9 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         #region متد های کلاس سازنده کنترلر دسته بندی
 
         private ICategoryService _CategoryService;
-        private readonly IToastNotification _toastNotification;
-        public CategoryController(ICategoryService Categoryservice, IToastNotification toastNotification)
+        public CategoryController(ICategoryService Categoryservice)
         {
             _CategoryService = Categoryservice;
-            _toastNotification = toastNotification;
         }
         public IActionResult showAllCategory()
         {

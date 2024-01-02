@@ -91,7 +91,7 @@ function message(final) {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'دسته بندی جدید اضافه شد.',
+                    title: 'ثبت اطلاعات انجام شد.',
                     showConfirmButton: false,
                     timer: 1800
                 })
@@ -118,7 +118,7 @@ function message(final) {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'دسته بندی حذف شد.',
+                    title: 'اطلاعات حذف شد.',
                     showConfirmButton: false,
                     timer: 1800
                 })
@@ -145,19 +145,6 @@ function message(final) {
                     position: 'center',
                     icon: 'error',
                     title: 'اطلاعات وارد شده تکراریست.',
-                    showConfirmButton: false,
-                    timer: 1800
-                })
-
-            }, 50)
-            setTimeout(function () { window.location.reload() }, 1890)
-            break;
-        case 6:
-            setTimeout(function () {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'زیردسته جدید اضافه شد.',
                     showConfirmButton: false,
                     timer: 1800
                 })

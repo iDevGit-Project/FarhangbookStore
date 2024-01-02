@@ -11,20 +11,20 @@ namespace FarhangbookStore.DataModel.Entities
     public class TBL_ProductSizeBook
     {
         [Key]
-        public int Writerid { get; set; }
+        public int SizeBookid { get; set; }
 
-        [Display(Name = "نام سایز کتاب به فارسی")]
+        [Display(Name = "نام سایز کتاب")]
         [Required(ErrorMessage = "وارد کردن {0} اجباری می باشد .")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1} باشد")]
         [MaxLength(512, ErrorMessage = "{0} نمیتواند بیشتر از {1} باید")]
-        public string WriterFaTitle { get; set; }
+        public string SizeBookName { get; set; }
 
 
-        [Display(Name = "نام سایز کتاب به انگلیسی")]
+        [Display(Name = "نام اندازه سایز کتاب")]
         [Required(ErrorMessage = "وارد کردن {0} اجباری می باشد .")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1} باشد")]
         [MaxLength(512, ErrorMessage = "{0} نمیتواند بیشتر از {1} باید")]
-        public string WriterEnTitle { get; set; }
+        public string SizeBook { get; set; }
 
         public bool IsDelete { get; set; }
     }
