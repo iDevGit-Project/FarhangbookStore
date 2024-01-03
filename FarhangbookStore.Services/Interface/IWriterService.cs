@@ -14,7 +14,7 @@ namespace FarhangbookStore.Services.Interface
         int AddWriter(TBL_ProductWriter writer);
         bool UpdateWriter(TBL_ProductWriter writer);
         bool DeleteWriter(TBL_ProductWriter writer);
-        bool ExistWriter(string fawritetitle, string enwritetitle, int writid);
+        bool ExistWriter(string fawritetitle, int writid);
         //==============================================
         TBL_ProductWriter FindWriterById(int writerid);
     }

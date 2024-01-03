@@ -30,6 +30,7 @@ namespace FarhangbookStore.Services.UnitOfWork
         private GenericCRUDClass<TBL_PropertyName> _productPropertyName;
         private GenericCRUDClass<TBL_PropertyName_Category> _productNameCategory;
         private GenericCRUDClass<TBL_PropertyValue> _productValue;
+        private GenericCRUDClass<TBL_ProductWriter> _productWriter ;
         //==================================================================================
 
         //ثبت کالای کتاب
@@ -183,6 +184,20 @@ namespace FarhangbookStore.Services.UnitOfWork
                     _productValue = new GenericCRUDClass<TBL_PropertyValue>(_context);
                 }
                 return _productValue;
+            }
+        }
+
+        //ثبت مقادیر برای درج اطلاعات چدید نویسنده کتاب
+        public GenericCRUDClass<TBL_ProductWriter> productWriterUW
+        {
+            //فقط خواندنی
+            get
+            {
+                if (_productWriter == null)
+                {
+                    _productWriter = new GenericCRUDClass<TBL_ProductWriter>(_context);
+                }
+                return _productWriter;
             }
         }
 

@@ -1,26 +1,26 @@
 ﻿@using FarhangbookStore.DataModel.Entities;
-@model IEnumerable<TBL_ProductWriter>
+@model IEnumerable<TBL_ProductPublisher>
 @{
-    ViewData["Title"] = "نمایش کلیه اطلاعات نویسنده یا مؤلف | فروشگاه اینترنتی بانک کتاب شیراز";
+    ViewData["Title"] = "نمایش کلیه اطلاعات ناشران | فروشگاه اینترنتی بانک کتاب شیراز";
     Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="m-heading-1 border-yellow-crusta m-bordered">
     <h4 class="bold">راهنما</h4>
     <p>
-        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت ، <span class="bold">نویسنده یا مؤلف</span> مدیریت اطلاعات نویسنده یا مؤلف را هم ببینید.
+        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت ، <span class="bold">ناشران</span> مدیریت اطلاعات ناشران را هم ببینید.
     </p>
 </div>
 <!-- BEGIN CONTAINER -->
 <div class="portlet light portlet-fit portlet-datatable bordered">
     <div class="portlet-title">
         <div class="caption">
-            <i class=" icon-layers font-green"></i>
-            <span class="caption-subject font-green-sharp bold uppercase">مدیریت اطلاعات نویسنده یا مؤلف</span>
+            <i class="icon-folder-alt font-green"></i>
+            <span class="caption-subject font-green-sharp bold uppercase">مدیریت اطلاعات ناشران</span>
         </div>
         <div class="actions">
             <a href="#" role="button" class="btn btn-outline red-thunderbird popovers" data-trigger="hover" data-placement="top" data-content="تازه سازی اطلاعات در مواقع ضروری" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
-            <a asp-area="Administrator" asp-controller="Writer" asp-action="AddWriter" role="button" class="btn green-jungle"> ثبت نویسنده (مؤلف) جدید <i class="fa fa-plus ml-2"></i></a>
+            <a asp-area="Administrator" asp-controller="Publisher" asp-action="AddWriter" role="button" class="btn green-jungle"> ثبت ناشر جدید <i class="fa fa-plus ml-2"></i></a>
             @* <a href="#showmodal=/Administrator/Writer/AddWriter" role="button" class="btn green-jungle"> ثبت نویسنده جدید <i class="fa fa-plus ml-2"></i></a> *@
             @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
             <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline popovers" data-trigger="hover" data-placement="top" data-content="بازگشت به پنل مدیریت"> بازگشت به پنل مدیریت </a>
@@ -67,7 +67,8 @@
             <thead>
                 <tr class="font-white">
                     <th class="text-center">ردیف</th>
-                    <th class="text-center">نام نویسنده یا مؤلف به فارسی</th>
+                    <th class="text-center">نام ناشر به فارسی</th>
+                    <th class="text-center EN__Font">Publisher name in English</th>
                     <th class="text-center">عملیات</th>
                 </tr>
             </thead>
@@ -75,13 +76,14 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="text-center">@item.Writerid</td>
-                        <td class="text-center">@item.WriterFaTitle</td>
+                        <td class="text-center">@item.Publisherid</td>
+                        <td class="text-center">@item.PublisherFaTitle</td>
+                        <td class="text-center EN__Font">@item.PublisherEnTitle</td>
                         <td class="text-center">
-                            <a href="#showmodal=/Administrator/Writer/UpdateWriter/@item.Writerid" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
+                            <a href="#showmodal=/Administrator/Publisher/UpdatePublisher/@item.Publisherid" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a href="#showmodal=/Administrator/Writer/DeleteWriter/@item.Writerid" class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
+                            <a href="#showmodal=/Administrator/Publisher/DeletePublisher/@item.Publisherid" class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
                                 <i class="fa fa-ban"></i>
                             </a>
                         </td>
@@ -103,7 +105,7 @@
     <!--===================================================================-->
     <!--اسکریپت جستجوی اطلاعات-->
     <script>
-                var infoDataTable = $('#Datatable_infoTable').DataTable({
+                        var infoDataTable = $('#Datatable_infoTable').DataTable({
                 paging: true,
                 // pageLength: 5,
                 // نمایش اطلاعات جستجو شده در زیر جدول به صورت فارسی

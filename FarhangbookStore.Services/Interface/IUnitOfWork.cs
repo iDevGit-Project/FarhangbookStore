@@ -19,6 +19,7 @@ namespace FarhangbookStore.Services.Interface
         GenericCRUDClass<TBL_ProductReating> productReatingUW { get; }
         GenericCRUDClass<TBL_ProductReview> productReviewUW { get; }
         GenericCRUDClass<TBL_PropertyName> productPropertyNameUW { get; }
+        GenericCRUDClass<TBL_ProductWriter> productWriterUW { get; }
         GenericCRUDClass<TBL_PropertyName_Category> productPropertyNameCategoryUW { get; }
         GenericCRUDClass<TBL_PropertyValue> productPropertyValueUW { get; }
         void Save();

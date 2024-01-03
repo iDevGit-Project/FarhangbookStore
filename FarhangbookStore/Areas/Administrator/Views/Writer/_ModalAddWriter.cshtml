@@ -10,17 +10,9 @@
         <div class="d-flex flex-column nav-group nav-group-outline mx-auto mb-10 p-10">
             <div class="row mt-10">
                 <div class="col-lg-12 mb-10 mb-lg-0">
-                        <div class="col-md-6 fv-row">
-                            <label asp-for="WriterFaTitle" autofocus="autofocus" class="fs-6 mb-2 text-dark">نام نویسنده به فارسی</label>
-                            <input type="text" asp-for="WriterFaTitle" class="form-control form-control-solid" autofocus="autofocus">
-                        <span asp-validation-for="WriterFaTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird"></span>
-                        </div>
-                        <div class="col-md-6 EN__Font fv-row">
-                        <label asp-for="WriterEnTitle" class="fs-6 mb-2 text-dark EN__Font">Author's name with publisher in English</label>
-                        <input type="text" asp-for="WriterEnTitle" class="form-control form-control-solid EN__Font">
-                        <span asp-validation-for="WriterEnTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird EN__Font"></span>
-                        </div>
-                    </div>
+                    <label asp-for="WriterFaTitle" class="fs-6 mb-2 text-dark">نام نویسنده به فارسی</label>
+                    <input type="text" asp-for="WriterFaTitle" autofocus="autofocus" class="form-control form-control-solid">
+                    <span asp-validation-for="WriterFaTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird"></span>
                 </div>
             </div>
         </div>

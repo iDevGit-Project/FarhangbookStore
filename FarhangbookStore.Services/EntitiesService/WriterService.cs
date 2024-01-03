@@ -60,9 +60,9 @@ namespace FarhangbookStore.Services.EntitiesService
                 return false;
             }
         }
-        public bool ExistWriter(string fawritetitle, string enwritetitle, int writid)
+        public bool ExistWriter(string fawritetitle, int writerid)
         {
-            return _Context.TBLProductWriters.Any(w => w.WriterFaTitle == fawritetitle && w.WriterFaTitle == enwritetitle && w.Writerid != writid && !w.IsDelete);
+            return _Context.TBLProductWriters.Any(w => w.WriterFaTitle == fawritetitle && w.Writerid != writerid && !w.IsDelete);
         }
 
         public TBL_ProductWriter FindWriterById(int writerid)
@@ -70,7 +70,7 @@ namespace FarhangbookStore.Services.EntitiesService
             return _Context.TBLProductWriters.Find(writerid);
         }
 
-        public List<TBL_ProductWriter> GetAllWriterForMenu()
+        public List<TBL_ProductWriter> GetAllWriterForMenu()    
         {
             return _Context.TBLProductWriters.Where(w => !w.IsDelete).ToList();
         }

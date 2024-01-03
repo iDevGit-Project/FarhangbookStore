@@ -9,7 +9,7 @@ namespace FarhangbookStore.Services.Interface
 {
     public interface IPublisherService
     {
-        List<TBL_ProductPublisher> ShowAllSizeBook();
+        List<TBL_ProductPublisher> ShowAllPublisher();
         List<TBL_ProductPublisher> GetAllProductPublisherForMenu();
         int AddPublisher(TBL_ProductPublisher productpublisher);
         bool UpdatePublisher(TBL_ProductPublisher productpublisher);
