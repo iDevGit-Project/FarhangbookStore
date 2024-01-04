@@ -26,7 +26,6 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         [HttpGet]
         public IActionResult AddWriter(int id)
         {
-            //return PartialView("_ModalAddWriter");
             ViewBag.id = id;
             return View();
         }

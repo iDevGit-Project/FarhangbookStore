@@ -24,7 +24,7 @@ namespace FarhangbookStore.DataModel.Entities
         [Required(ErrorMessage = "وارد کردن {0} اجباری می باشد .")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1} باشد")]
         [MaxLength(512, ErrorMessage = "{0} نمیتواند بیشتر از {1} باید")]
-        public string SizeBook { get; set; }
+        public string SizeBookRange { get; set; }
 
         public bool IsDelete { get; set; }
     }

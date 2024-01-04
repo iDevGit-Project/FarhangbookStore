@@ -14,7 +14,7 @@ namespace FarhangbookStore.Services.Interface
         int AddSizeBook(TBL_ProductSizeBook sizebook);
         bool UpdateSizeBook(TBL_ProductSizeBook sizebook);
         bool DeleteSizeBook(TBL_ProductSizeBook sizebook);
-        bool ExistSizeBook(string SizeBookName, int sizebookid);
+        bool ExistSizeBook(string sizeBookname, string sizeBookRange, int sizebookid);
         //==============================================
         TBL_ProductSizeBook FindSizeBookById(int sizebookid);
     }
