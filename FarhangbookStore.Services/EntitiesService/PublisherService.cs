@@ -17,25 +17,24 @@ namespace FarhangbookStore.Services.EntitiesService
         {
             _Context = Context;
         }
-        public int AddPublisher(TBL_ProductPublisher productpublisher)
+        public int AddPublisher(TBL_ProductPublisher publisher)
         {
             try
             {
-                _Context.TBLProductPublishers.Add(productpublisher);
+                _Context.TBLProductPublishers.Add(publisher);
                 _Context.SaveChanges();
-                return productpublisher.Publisherid;
+                return publisher.Publisherid;
             }
             catch (Exception)
             {
                 return 0;
             }
         }
-        public bool UpdatePublisher(TBL_ProductPublisher productpublisher)
+        public bool UpdatePublisher(TBL_ProductPublisher publisher)
         {
             try
             {
-                productpublisher.IsDelete = true;
-                _Context.TBLProductPublishers.Update(productpublisher);
+                _Context.TBLProductPublishers.Update(publisher);
                 _Context.SaveChanges();
                 return true;
             }
@@ -45,11 +44,12 @@ namespace FarhangbookStore.Services.EntitiesService
             }
         }
 
-        public bool DeletePublisher(TBL_ProductPublisher productpublisher)
+        public bool DeletePublisher(TBL_ProductPublisher publisher)
         {
             try
             {
-                _Context.TBLProductPublishers.Update(productpublisher);
+                publisher.IsDelete = true;
+                _Context.TBLProductPublishers.Update(publisher);
                 _Context.SaveChanges();
                 return true;
             }
@@ -60,14 +60,14 @@ namespace FarhangbookStore.Services.EntitiesService
             }
         }
 
-        public bool ExistPublisher(string publisherFaname, string publisherEnname, int productpublisherid)
+        public bool ExistPublisher(string publisherFaname, string publisherEnname, int publisherid)
         {
-            return _Context.TBLProductPublishers.Any(p => p.PublisherFaTitle== publisherFaname && p.PublisherEnTitle== publisherEnname && p.Publisherid != productpublisherid && !p.IsDelete);
+            return _Context.TBLProductPublishers.Any(p => p.PublisherFaTitle== publisherFaname && p.PublisherEnTitle== publisherEnname && p.Publisherid != publisherid && !p.IsDelete);
         }
 
-        public TBL_ProductPublisher FindPublisherById(int productpublisherid)
+        public TBL_ProductPublisher FindPublisherById(int publisherid)
         {
-            return _Context.TBLProductPublishers.Find(productpublisherid);
+            return _Context.TBLProductPublishers.Find(publisherid);
         }
 
         public List<TBL_ProductPublisher> GetAllProductPublisherForMenu()

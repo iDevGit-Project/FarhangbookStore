@@ -17,7 +17,7 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         }
         public IActionResult ShowAllPublisher()
 		{
-			return View();
+			return View(_publisherService.ShowAllPublisher());
 		}
 
         #endregion
@@ -27,7 +27,6 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         [HttpGet]
         public IActionResult AddPublisher(int id)
         {
-            //return PartialView("_ModalAddWriter");
             ViewBag.id = id;
             return View();
         }
@@ -56,7 +55,6 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
         [HttpGet]
         public IActionResult UpdatePublisher(int id)
         {
-
             return PartialView("_ModalUpdatePublisher", _publisherService.FindPublisherById(id));
         }
 
@@ -67,15 +65,15 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             {
                 return RedirectToAction(nameof(ShowAllPublisher));
             }
-            if (_publisherService.ExistPublisher(publisher.PublisherFaTitle, publisher.PublisherEnTitle, 0))
+            if (_publisherService.ExistPublisher(publisher.PublisherFaTitle, publisher.PublisherEnTitle, publisher.Publisherid))
             {
                 return RedirectToAction(nameof(ShowAllPublisher));
             }
             // در برنامه می باشد که با اعداد 1و2و3و4 مشخص شده است SweetAlert این متد برای نمایش پیغام های کلاس
             // مراجعه کنید OpenModal.js جهت اطلاعات بیشتر به فایل جاوااسکریپت مربوط به پروژه به نام
-            // نامی دلخواه است getUpdateCategoryid متد 
-            bool getUpdateCategoryid = _publisherService.UpdatePublisher(publisher);
-            int sendjson = getUpdateCategoryid ? 2 : 4;
+            // نامی دلخواه است getUpdatePublishedid متد 
+            bool getUpdatePublishedid = _publisherService.UpdatePublisher(publisher);
+            int sendjson = getUpdatePublishedid ? 2 : 4;
             return Json(sendjson);
         }
         #endregion
@@ -99,8 +97,8 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 
             // در برنامه می باشد که با اعداد 1و2و3و4 مشخص شده است SweetAlert این متد برای نمایش پیغام های کلاس
             // مراجعه کنید OpenModal.js جهت اطلاعات بیشتر به فایل جاوااسکریپت مربوط به پروژه به نام
-            bool getDeleteWriterid = _publisherService.DeletePublisher(publisher);
-            int sendjson = getDeleteWriterid ? 3 : 4;
+            bool getDeletePublisherid = _publisherService.DeletePublisher(publisher);
+            int sendjson = getDeletePublisherid ? 3 : 4;
             return Json(sendjson);
         }
         #endregion

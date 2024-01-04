@@ -5,10 +5,10 @@
 	<h5 class="modal-title"> غیرفعال کردن ناشر: <span class="badge bg-blue-ebonyclay bg-font-blue-ebonyclay"> @Model.PublisherFaTitle</span></h5>
 </div>
 
-<form asp-action="DeleteWriter" method="post" data-ajax="true" data-Success="Refresh" enctype="multipart/form-data">
-	<!--نمایش آی دی  نویسنده جهت غیرفعال کردن-->
-	<input type="hidden" asp-for="Publisherid" />
+<form asp-action="DeletePublisher" method="post" data-ajax="true" data-Success="Refresh" enctype="multipart/form-data">
 	<div class="modal-body">
+		<!--نمایش آی دی  نویسنده جهت غیرفعال کردن-->
+		<input type="hidden" asp-for="Publisherid" />
 		<div class="alert alert-warning">
 			<strong>هشدار!</strong> در صورت غیرفعال کردن  اطلاعات ناشر، کلیه اطلاعات مربوطه غیرفعال خواهد شد.
 		</div>

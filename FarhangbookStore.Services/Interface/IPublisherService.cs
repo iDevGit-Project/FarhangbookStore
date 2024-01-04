@@ -11,11 +11,11 @@ namespace FarhangbookStore.Services.Interface
     {
         List<TBL_ProductPublisher> ShowAllPublisher();
         List<TBL_ProductPublisher> GetAllProductPublisherForMenu();
-        int AddPublisher(TBL_ProductPublisher productpublisher);
-        bool UpdatePublisher(TBL_ProductPublisher productpublisher);
-        bool DeletePublisher(TBL_ProductPublisher productpublisher);
-        bool ExistPublisher(string publisherFaname, string publisherEnname, int productpublisherid);
+        int AddPublisher(TBL_ProductPublisher publisher);
+        bool UpdatePublisher(TBL_ProductPublisher publisher);
+        bool DeletePublisher(TBL_ProductPublisher publisher);
+        bool ExistPublisher(string publisherFaname, string publisherEnname, int publisherid);
         //==============================================
-        TBL_ProductPublisher FindPublisherById(int productpublisherid);
+        TBL_ProductPublisher FindPublisherById(int publisherid);
     }
 }

@@ -55,7 +55,6 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 		[HttpGet]
 		public IActionResult UpdateWriter(int id)
 		{
-
 			return PartialView("_ModalUpdateWriter", _writerService.FindWriterById(id));
 		}
 
