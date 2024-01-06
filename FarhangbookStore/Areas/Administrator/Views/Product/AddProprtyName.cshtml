@@ -35,6 +35,9 @@
         </div>
     </div>
     <div class="portlet-body">
+        <div class="alert alert-info">
+            <strong>دقت فرمایید!</strong> برای ثبت خصوصیات یا ویژه گی، ابتدا آن را در کادر زیر وارد کرده، دسته بندی خود را انتخاب و سپس بر روی دکمه<span class="badge bg-blue-ebonyclay bg-font-blue-ebonyclay"> ثبت ویژه گی برای زیردسته ها </span> کلیک نمایید.
+        </div>
         <!--نمایش پیغام موفقیت آمیز بودن ثبت یا خطای درج اطلاعات در برنامه-->
         @if (TempData["Result"] != null)
         {
@@ -74,29 +77,45 @@
         <!-- PERSONAL INFO TAB -->
         <form asp-area="Administrator" asp-controller="Product" asp-action="AddProprtyName">
             <!-- دسته بندی اصلی جهت اضافه کردن زیردسته ID بازگشت مقدار  -->
-            <div class="panel-body">
+            <div class="portlet-title">
                 <div class="row">
-                    <div class="col-md-4 col-xl-12 col-sm-12">
-                        <div class="form-group">
-                            @* <label asp-for="CategoryFaTitle" class="control-label"></label> *@
-                            <div class="input-icon right">
-                                <i class="icon-folder-alt"></i>
-                                <input asp-for="PropertyTitle" class="form-control input-icon right" autofocus="autofocus" placeholder="نام خصوصیات و ویژه گی را وارد نمایید." />
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="panel">
+                            <div class="panel-heading bg-blue-steel bg-font-blue-steel">
+                                <h4 class="panel-title text-center bg-blue-steel bg-font-blue-steel">اطلاعات دریافتی جهت ثبت ویژه گی ها</h4>
                             </div>
-                            <span asp-validation-for="PropertyTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird"></span>
+                            <div class="panel-body">
+                                <div class="text-center col-sm-12 col-md-12">
+                                    <div class="input-icon right">
+                                        <i class="icon-folder-alt"></i>
+                                        <input asp-for="PropertyTitle" class="form-control input-icon right" autofocus="autofocus" placeholder="نام خصوصیات و ویژه گی را وارد نمایید." />
+                                    </div>
+                                    <span asp-validation-for="PropertyTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird"></span>
+                                    <div class="form-group">
+                                        <button type="button" value="ثبت تگ" class="Add-Category btn-block btn green-jungle"> ثبت ویژه گی برای زیردسته ها<i class="icon-badge ml-2"></i></button>
+                                    </div>
+                                    <div class="form-group">
+                                        <!--نمایش زیردسته های ثبت شده-->
+                                        <select id="select-category" data-style="btn-primary" class="bs-select selectpicker form-control" asp-items="@(new SelectList(ViewBag.Category, "Categoryid","CategoryFaTitle"))"></select>
+                                    </div>
+                                    <div class="form-group"> 
+                                        <button type="submit" data-loading-text="در حال بررسی ..." value="ثبت اطلاعات" class="btn-block btn btn-primary mt-ladda-btn ladda-button mt-progress-demo" data-style="slide-left"> ثبت و ذخیره نهایی<i class="fa fa-save ml-2"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-xl-12 col-sm-12">
-                        <button type="button" value="ثبت تگ" class="Add-Category btn-block btn green-jungle"> ثبت ویژه گی برای زیردسته ها<i class="icon-badge ml-2"></i></button>
-                    </div>
-                    <div class="col-md-3 col-xl-12 col-sm-12">
-                        <div class="form-group">
-                            <!--نمایش زیردسته های ثبت شده-->
-                            <select id="select-category" data-style="btn-primary" class="bs-select selectpicker form-control" asp-items="@(new SelectList(ViewBag.Category, "Categoryid","CategoryFaTitle"))"></select>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="panel">
+                            <div class="panel-heading bg-blue-steel bg-font-blue-steel">
+                                <h4 class="panel-title text-center bg-blue-steel bg-font-blue-steel">نمایش ویژه گی های ثبت شده برای زیردسته های موجود</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="text-center col-sm-12 col-md-12">
+                                    <div class="desc ListCategory"></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2 col-xl-12 col-sm-12">
-                        <button type="submit" data-loading-text="در حال بررسی ..." value="ثبت اطلاعات" class="btn-block btn btn-primary mt-ladda-btn ladda-button mt-progress-demo" data-style="slide-left"> ثبت و ذخیره نهایی<i class="fa fa-save ml-2"></i></button>
                     </div>
                 </div>
             </div>
@@ -105,24 +124,7 @@
     </div>
 </div>
 <!-- BEGIN LIST CATEGORY -->
-<div class="portlet light portlet-fit portlet-datatable bordered">
-    <div class="portlet-title">
-        <div class="portlet-body">
-            <div class="col-md-12">
-                <div class="scroller" style="height: 200px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                    <div class="row">
-                        <div class="text-center col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <h4 class="font-grey-cascade">نمایش ویژه گی های ثبت شده برای زیردسته های موجود</h4>
-                                <div class="desc ListCategory"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- END LIST CATEGORY -->
 <!-- END CONTAINER -->
 @section MainScripts {
@@ -133,7 +135,7 @@
     <!--===================================================================-->
     <!--اسکریپت جستجوی اطلاعات-->
     <script>
-                                                var infoDataTable = $('#Datatable_infoTable').DataTable({
+              var infoDataTable = $('#Datatable_infoTable').DataTable({
                 paging: true,
                 // pageLength: 5,
                 // نمایش اطلاعات جستجو شده در زیر جدول به صورت فارسی
@@ -185,10 +187,10 @@
                 var value = $("#select-category").children("option:selected").val();
                 var text = $("#select-category").children("option:selected").text();
                 $(".ListCategory").append(
-                    "<div style='height: 20px;width: 100%;border-radius: 4px;margin-bottom: 1.2%;margin-left: 1%;display:inline-block;'>"
-                    + "<label class='tag label label-info col-md-12'>" + text + "</label>"
+                    "<div style='height: 30px;width: 100%;border-radius: 4px;margin-bottom: 1.2%;margin-left: 1%;display:inline-block;'>"
+                    + "<label class='tag label bg-blue-ebonyclay bg-font-blue-ebonyclay col-md-12'>" + text + "</label>"
                     + "<input type='hidden' name='Categoryid' value='" + value + "' />"
-                    + "<a style='float:left;top:-36px;display: flex;height: 30px;border-radius: 4px;border-radius: 4px;justify-content: center;align-items: center;' class='badge badge-danger btn btn-danger remove-category'>حذف</a>"
+                    + "<a style='float:left;top:-37px;display: flex;height: 32px;border-radius: 4px;border-radius: 4px;justify-content: center;align-items: center;' class='badge badge-danger btn btn-danger remove-category'>حذف</a>"
                     + "</div>"
                 );
                 $("#select-category").children("option:selected").remove();
