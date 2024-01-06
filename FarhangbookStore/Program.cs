@@ -70,6 +70,7 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IWriterService, WriterService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductSizeBookService, ProductSizeBookService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
 

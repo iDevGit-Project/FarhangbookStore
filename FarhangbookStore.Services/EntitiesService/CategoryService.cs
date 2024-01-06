@@ -114,6 +114,7 @@ namespace FarhangbookStore.Services.EntitiesService
             return _Context.TBLProductCategories.Any(c => c.CategoryFaTitle == fatitle && c.CategoryEnTitle == entitle && c.Categoryid != cateid && !c.IsDelete);
         }
 
+        // متد مربوط به نمایش زیردسته ها جهت ثبت ویژه گی ها برای هر کدام از زیردسته ها
         public List<TBL_ProductCategory> Showsubcategory()
         {
             return _Context.TBLProductCategories.Where(c => c.SubCategory != null).ToList();

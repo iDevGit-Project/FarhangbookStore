@@ -1,4 +1,5 @@
-﻿using FarhangbookStore.Services.EntitiesService;
+﻿using FarhangbookStore.DataModel.Entities;
+using FarhangbookStore.Services.EntitiesService;
 using FarhangbookStore.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,11 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 		#region متد مربوط به پیکربندی خصوصیات و ویژه گی ها
 
 		private IProductService _productService;
-		public ProductController(IProductService productService)
+		private ICategoryService _Categoryservice;
+		public ProductController(IProductService productService, ICategoryService Categoryservice)
 		{
 			_productService = productService;
+			_Categoryservice = Categoryservice;
 		}
 		public IActionResult ShowAllPropertyname()
 		{
@@ -23,6 +26,49 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 
 		#region متد ثبت خصوصیات و ویژه گی ها
 
-		#endregion
-	}
+		[HttpGet]		
+		public IActionResult AddProprtyName()
+		{
+			// از این متد برای نمایش زیردسته ها در هنگام ثبت خصوصیات و ویژه گی ها برای زیردسته استفاده می شود
+            ViewBag.Category = _Categoryservice.Showsubcategory();
+            return View();
+        }
+
+		[HttpPost]
+        public IActionResult AddProprtyName(TBL_PropertyName propertyName, List<int> Categoryid)
+        {
+			if (!ModelState.IsValid)
+			{
+                ViewBag.Category = _Categoryservice.Showsubcategory();
+			}
+            if (_productService.ExistPropertyname(propertyName.PropertyTitle, 0))
+            {
+                ModelState.AddModelError("PropertyTitle", "خصوصیات تکراری است .");
+                return View(propertyName);
+            }
+            int nameid = _productService.AddProprtyName(propertyName);
+            if (nameid <= 0)
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(ShowAllPropertyname));
+            }
+            List<TBL_PropertyName_Category> Addpc = new List<TBL_PropertyName_Category>();
+
+            foreach (var item in Categoryid)
+            {
+                Addpc.Add(new TBL_PropertyName_Category
+                {
+                    Categoryid = item,
+                    PropertyNameId = nameid,
+
+                });
+            }
+
+            bool res = _productService.AddPropertyForCategory(Addpc);
+            TempData["Result"] = res ? "true" : "false";
+            return RedirectToAction(nameof(ShowAllPropertyname));
+        }
+
+        #endregion
+    }
 }
