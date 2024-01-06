@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FarhangbookStore.DataModel;
+using FarhangbookStore.DataModel.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +11,16 @@ namespace FarhangbookStore.Services.EntitiesService
 {
 	public class ProductService
 	{
-		#region سرویس ثبت ویژه گی ها
-
+		private readonly ApplicationDbContext _Context;
+		public ProductService(ApplicationDbContext Context) 
+		{ 
+			_Context = Context;
+		}
+		#region سرویس ثبت خصوصیات و ویژه گی ها
+		public List<TBL_PropertyName> ShowAllProperty()
+		{
+			return _Context.TBLPropertyNames.ToList();
+		}
 		#endregion
 	}
 }

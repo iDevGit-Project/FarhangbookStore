@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EntityViewModels\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

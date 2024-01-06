@@ -1,4 +1,5 @@
-﻿using FarhangbookStore.Services.Interface;
+﻿using FarhangbookStore.Services.EntitiesService;
+using FarhangbookStore.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FarhangbookStore.Areas.Administrator.Controllers
@@ -6,15 +7,22 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 	[Area("Administrator")]
 	public class ProductController : Controller
 	{
-		private ICategoryService _Categoryservice;
+		#region متد مربوط به پیکربندی خصوصیات و ویژه گی ها
 
-        public ProductController(ICategoryService CategoryService)
-        {
-			_Categoryservice = CategoryService;
-        }
-        public IActionResult Index()
+		private IProductService _productService;
+		public ProductController(IProductService productService)
 		{
-			return View();
+			_productService = productService;
 		}
+		public IActionResult ShowAllPropertyname()
+		{
+			return View(_productService.ShowAllProperty());
+		}
+
+		#endregion
+
+		#region متد ثبت خصوصیات و ویژه گی ها
+
+		#endregion
 	}
 }
