@@ -35,7 +35,7 @@
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
-                                title: 'اطلاعات نویسنده ثبت شد.',
+                                title: 'ویژه گی ها ثبت شد.',
                                 showConfirmButton: false,
                                 timer: 1800
                             })
@@ -76,11 +76,8 @@
                             <td class="text-center">@item.PropertyNameId</td>
                             <td class="text-center">@item.PropertyTitle</td>
                             <td class="text-center">
-                            <a href="#showmodal=/Administrator/Publisher/UpdatePublisher/@item.PropertyNameId" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
+                            <a href="/Administrator/Product/UpdatePropertyName/@item.PropertyNameId" class="btn green-haze btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="ویرایش اطلاعات">
                                     <i class="fa fa-pencil"></i>
-                                </a>
-                            <a href="#showmodal=/Administrator/Publisher/DeletePublisher/@item.PropertyNameId" class="btn red-thunderbird btn-circle btn-icon-only btn-default popovers" data-trigger="hover" data-placement="top" data-content="غیرفعال سازی">
-                                    <i class="fa fa-ban"></i>
                                 </a>
                             </td>
                         </tr>

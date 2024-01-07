@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TBL_PropertyName
+@{
     ViewData["Title"] = "ویرایش خصوصیات و ویژه گی های ثبت شده | فروشگاه اینترنتی بانک کتاب شیراز";
     Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
     //================================================================
@@ -26,7 +27,7 @@
     <div class="portlet-title">
         <div class="caption">
             <i class="icon-folder-alt font-green"></i>
-            <span class="caption-subject font-green-sharp bold uppercase tooltips" data-container="body" data-placement="top" data-original-title="Tooltip in top">ثبت خصوصیات و ویژه گی جدید</span>
+            <span class="caption-subject font-green-sharp bold uppercase tooltips" data-container="body" data-placement="top" data-original-title="Tooltip in top">ویرایش خصوصیات و ویژه گی ها</span>
         </div>
         <div class="actions">
             <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
@@ -36,8 +37,8 @@
         </div>
     </div>
     <div class="portlet-body">
-        <div class="alert alert-info">
-            <strong>دقت فرمایید!</strong> برای ثبت خصوصیات یا ویژه گی، ابتدا آن را در کادر زیر وارد کرده، دسته بندی خود را انتخاب و سپس بر روی دکمه<span class="badge bg-blue-ebonyclay bg-font-blue-ebonyclay"> ثبت ویژه گی برای زیردسته ها </span> کلیک نمایید.
+        <div class="alert alert-warning">
+            <strong>دقت فرمایید!</strong> برای ویرایش خصوصیات یا ویژه گی، ابتدا آن را در کادر زیر انتخاب کرده، سپس به دلخواه می توانید<span class="badge bg-blue-ebonyclay bg-font-blue-ebonyclay"> خصوصیات و  ویژه گی ثبت شده برای هر زیردسته ها </span> حذف نمایید.
         </div>
         <!--نمایش پیغام موفقیت آمیز بودن ثبت یا خطای درج اطلاعات در برنامه-->
         @if (TempData["Result"] != null)
@@ -49,7 +50,7 @@
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
-                            title: 'ویژه گی جدید ثبت شد.',
+                            title: 'ویرایش ویژه گی ها انجام شد.',
                             showConfirmButton: false,
                             timer: 1800
                         })
@@ -78,6 +79,7 @@
         <!-- PERSONAL INFO TAB -->
         <form asp-area="Administrator" asp-controller="Product" asp-action="UpdatePropertyName">
             <input asp-for="PropertyNameId" type="hidden" />
+
             <!-- دسته بندی اصلی جهت اضافه کردن زیردسته ID بازگشت مقدار  -->
             <div class="portlet-title">
                 <div class="row">
@@ -98,10 +100,26 @@
                                     </div>
                                     <div class="form-group">
                                         <!--نمایش زیردسته های ثبت شده-->
-                                        <select id="select-category" data-style="btn-primary" class="bs-select selectpicker form-control" asp-items="@(new SelectList(ViewBag.Category, "Categoryid","CategoryFaTitle"))"></select>
+                                        <select id="select-category" data-style="btn-primary" class="bs-select selectpicker form-control">
+                                            @foreach (var item in TBLProductCategories)
+                                            {
+                                                if (viewModelPopertyNameForUpdate.Where(c => c.Categoryid == item.Categoryid).Any())
+                                                {
+                                                    existprop.Add(new ViewModel_UpdatePropertyName
+                                                    {
+                                                        Categoryid = item.Categoryid,
+                                                        PropertyTitle = item.CategoryFaTitle,
+                                                    });
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Categoryid">@item.CategoryFaTitle</option>
+                                                }
+                                            }
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" data-loading-text="در حال بررسی ..." value="ثبت اطلاعات" class="btn-block btn btn-primary mt-ladda-btn ladda-button mt-progress-demo" data-style="slide-left"> ثبت و ذخیره نهایی<i class="fa fa-save ml-2"></i></button>
+                                        <button type="submit" data-loading-text="در حال بررسی ..." value="ثبت اطلاعات" class="btn-block btn btn-primary mt-ladda-btn ladda-button mt-progress-demo" data-style="slide-left">  ویرایش و ذخیره نهایی<i class="fa fa-save ml-2"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -112,9 +130,21 @@
                             <div class="panel-heading bg-blue-steel bg-font-blue-steel">
                                 <h4 class="panel-title text-center bg-blue-steel bg-font-blue-steel">نمایش ویژه گی های ثبت شده برای زیردسته های موجود</h4>
                             </div>
-                            <div class="panel-body">
-                                <div class="text-center col-sm-12 col-md-12">
-                                    <div class="desc ListCategory"></div>
+                            <div class="scroller" style="height: 235px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                                <div class="panel-body">
+                                    <div class="text-center col-sm-12 col-md-12">
+                                        <!--نمایش اضافه شدن ویژه گی ها به هر زیردسته-->
+                                        <div class="desc ListCategory">
+                                            @foreach (var item in existprop)
+                                            {
+                                                <div style='height: 30px;width: 100%;border-radius: 4px;margin-bottom: 1.2%;margin-left: 1%;display:inline-block;'>
+                                                    <label class='tag label bg-blue-ebonyclay bg-font-blue-ebonyclay col-md-12'>@item.PropertyTitle</label>
+                                                    <input type='hidden' name='Categoryid' value="@item.Categoryid" />
+                                                    <a style='float:left;top:-37px;display: flex;height: 32px;border-radius: 4px;border-radius: 4px;justify-content: center;align-items: center;' class='badge badge-danger btn btn-danger remove-category'>حذف</a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
