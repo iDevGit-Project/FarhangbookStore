@@ -21,6 +21,27 @@ namespace FarhangbookStore.Services.EntitiesService
         
         #region سرویس خصوصیات و ویژه گی ها
 
+        public bool ExistPropertyname(string name, int id)
+        {
+            return _Context.TBLPropertyNames.Any(p => p.PropertyTitle == name && p.PropertyNameId != id);
+        }
+
+        public TBL_PropertyName FindPropertyBuyeid(int id)
+        {
+            return _Context.TBLPropertyNames.Find(id);
+        }
+        public bool ExistPropertyName(string name, int id)
+        {
+            return _Context.TBLPropertyNames.Any(p => p.PropertyTitle == name && p.PropertyNameId != id);
+        }
+        public List<TBL_PropertyName> ShowAllProperty()
+		{
+			return _Context.TBLPropertyNames.ToList();
+		}
+
+        #endregion
+
+        #region متد ثبت خصوصیات و ویژه گی ها برای دسته بندی ها
         public bool AddPropertyForCategory(List<TBL_PropertyName_Category> categories)
         {
             try
@@ -34,7 +55,9 @@ namespace FarhangbookStore.Services.EntitiesService
                 return false;
             }
         }
+        #endregion
 
+        #region متد حذف خصوصیات و ویژه گی ها برای دسته بندی ها
         public bool DeleteProperyForCategory(int propid)
         {
             try
@@ -49,36 +72,41 @@ namespace FarhangbookStore.Services.EntitiesService
                 return true;
             }
         }
+        #endregion
 
-        public bool ExistPropertyname(string name, int id)
-        {
-            return _Context.TBLPropertyNames.Any(p => p.PropertyTitle == name && p.PropertyNameId != id);
-        }
-
-        public TBL_PropertyName FindPropertyBuyeid(int id)
-        {
-            return _Context.TBLPropertyNames.Find(id);
-        }
-        public List<TBL_PropertyName> ShowAllProperty()
-		{
-			return _Context.TBLPropertyNames.ToList();
-		}
-
+        #region  متد ویرایش خصوصیات و ویژه گی ها موجود در دسته بندی ها
         public List<ViewModel_UpdatePropertyName> ShowPropertyNameForUpdate(int propertynameid)
         {
             // ترکیب دو جدول به صورت همزمان با استفاده از ویو مدل
             List<ViewModel_UpdatePropertyName> updates = (from pc in _Context.TBLPropertyNameCategories
-                                                         join p in _Context.TBLPropertyNames on pc.PropertyNameId equals p.PropertyNameId
-                                                         where (pc.PropertyNameId == propertynameid)
-                                                         select new ViewModel_UpdatePropertyName
-                                                         {
-                                                             pncId = pc.pncId,
-                                                             Categoryid = pc.Categoryid,
-                                                             PropertyNameId = p.PropertyNameId,
-                                                             PropertyTitle = p.PropertyTitle,
+                                                          join p in _Context.TBLPropertyNames on pc.PropertyNameId equals p.PropertyNameId
+                                                          where (pc.PropertyNameId == propertynameid)
+                                                          select new ViewModel_UpdatePropertyName
+                                                          {
+                                                              pncId = pc.pncId,
+                                                              Categoryid = pc.Categoryid,
+                                                              PropertyNameId = p.PropertyNameId,
+                                                              PropertyTitle = p.PropertyTitle,
 
-                                                         }).ToList();
+                                                          }).ToList();
             return updates;
+        }
+        #endregion
+
+        #region متد بروزرسانی خصوصیات و ویژه گی ها
+
+        public bool UpdatePropertyName(TBL_PropertyName propertyName)
+        {
+            try
+            {
+                _Context.TBLPropertyNames.Update(propertyName);
+                _Context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion
 
@@ -98,21 +126,5 @@ namespace FarhangbookStore.Services.EntitiesService
         }
         #endregion
 
-        #region متد بروزرسانی خصوصیات و ویژه گی ها
-
-        public bool UpdatePropertyname(TBL_PropertyName propertyName)
-        {
-            try
-            {
-                _Context.TBLPropertyNames.Update(propertyName);
-                _Context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-        #endregion
     }
 }

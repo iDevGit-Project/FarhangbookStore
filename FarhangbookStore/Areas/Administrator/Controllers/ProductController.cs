@@ -41,7 +41,7 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 			{
                 ViewBag.Category = _Categoryservice.Showsubcategory();
 			}
-            if (_productService.ExistPropertyname(propertyName.PropertyTitle, 0))
+            if (_productService.ExistPropertyName(propertyName.PropertyTitle, 0))
             {
                 ModelState.AddModelError("PropertyTitle", "خصوصیات تکراری است .");
                 return View(propertyName);
@@ -69,6 +69,57 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             return RedirectToAction(nameof(ShowAllPropertyname));
         }
 
+        #endregion
+
+        #region متد ویرایش خصوصیات و ویژه گی های موجود در دسته بندی ها
+        [HttpGet]
+        public IActionResult UpdatePropertyName(int id)
+        {
+            ViewBag.Category = _Categoryservice.Showsubcategory();
+            ViewBag.Property = _productService.ShowPropertyNameForUpdate(id);
+            return View(_productService.FindPropertyBuyeid(id));
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePropertyName(TBL_PropertyName propertyName, List<int> Categoryid)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Category = _Categoryservice.Showsubcategory();
+                ViewBag.Property = _productService.ShowPropertyNameForUpdate(propertyName.PropertyNameId);
+                return View();
+            }
+            if (_productService.ExistPropertyName(propertyName.PropertyTitle, propertyName.PropertyNameId))
+            {
+                ModelState.AddModelError("PropertyTitle", "خصوصیات تکراری است .");
+                return View(propertyName);
+            }
+            bool updateprop = _productService.UpdatePropertyName(propertyName);
+            if (!updateprop)
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(ShowAllPropertyname));
+            }
+            bool deleteprop = _productService.DeleteProperyForCategory(propertyName.PropertyNameId);
+            if (!deleteprop)
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(ShowAllPropertyname));
+            }
+            List<TBL_PropertyName_Category> categories = new List<TBL_PropertyName_Category>();
+            foreach (var item in Categoryid)
+            {
+                categories.Add(new TBL_PropertyName_Category
+                {
+                    Categoryid = item,
+                    PropertyNameId = propertyName.PropertyNameId,
+
+                });
+            }
+            bool addpropertyforcategory = _productService.AddPropertyForCategory(categories);
+            TempData["Result"] = addpropertyforcategory ? "true" : "false";
+            return RedirectToAction(nameof(ShowAllPropertyname));
+        }
         #endregion
     }
 }

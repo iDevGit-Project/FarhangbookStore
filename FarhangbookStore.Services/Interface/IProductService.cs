@@ -14,10 +14,10 @@ namespace FarhangbookStore.Services.Interface
 
 		List<TBL_PropertyName> ShowAllProperty();
 		int AddProprtyName(TBL_PropertyName tblPropertyName);
-		bool ExistPropertyname(string name, int id);
+		bool ExistPropertyName(string name, int id);
 		bool AddPropertyForCategory(List<TBL_PropertyName_Category> categories);
 		List<ViewModel_UpdatePropertyName> ShowPropertyNameForUpdate(int propertynameid);
-		bool UpdatePropertyname(TBL_PropertyName propertyName);
+		bool UpdatePropertyName(TBL_PropertyName propertyName);
 		bool DeleteProperyForCategory(int propid);
 		TBL_PropertyName FindPropertyBuyeid(int id);
 
