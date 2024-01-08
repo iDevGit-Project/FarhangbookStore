@@ -10,9 +10,9 @@ namespace FarhangbookStore.Services.Interface
 {
 	public interface IProductService
 	{
-		#region TBLProductProperty متد های جدول 
+        #region سرویس های جدول خصوصیات و ویژه ها به دسته بندی های کتاب
 
-		List<TBL_PropertyName> ShowAllProperty();
+        List<TBL_PropertyName> ShowAllProperty();
 		int AddProprtyName(TBL_PropertyName tblPropertyName);
 		bool ExistPropertyName(string name, int id);
 		bool AddPropertyForCategory(List<TBL_PropertyName_Category> categories);
@@ -22,5 +22,14 @@ namespace FarhangbookStore.Services.Interface
 		TBL_PropertyName FindPropertyBuyeid(int id);
 
 		#endregion
-	}
+
+		#region سرویس های جدول کالای کتاب
+		List<TBL_Product> ShowallProduct();
+        int AddProduct(TBL_Product product);
+        TBL_Product FindProductBuyeid(int productid);
+        bool UpdateProduct(TBL_Product product);
+        int FindCategoryForProduct(int product);
+
+        #endregion
+    }
 }

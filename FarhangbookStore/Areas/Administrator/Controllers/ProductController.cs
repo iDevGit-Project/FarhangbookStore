@@ -8,9 +8,9 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 	[Area("Administrator")]
 	public class ProductController : Controller
 	{
-		#region متد مربوط به پیکربندی خصوصیات و ویژه گی ها
+        #region متد مربوط به پیکربندی کلیه آیتم های مربوط به کالای کتاب
 
-		private IProductService _productService;
+        private IProductService _productService;
 		private ICategoryService _Categoryservice;
 		public ProductController(IProductService productService, ICategoryService Categoryservice)
 		{
@@ -23,6 +23,13 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
 		}
 
 		#endregion
+
+        #region متد مربوط به پیکربندی محصولات
+        public IActionResult ShowallProduct()
+        {
+            return View(_productService.ShowallProduct());
+        }
+        #endregion
 
 		#region متد ثبت خصوصیات و ویژه گی ها
 
@@ -121,5 +128,6 @@ namespace FarhangbookStore.Areas.Administrator.Controllers
             return RedirectToAction(nameof(ShowAllPropertyname));
         }
         #endregion
+
     }
 }

@@ -18,7 +18,9 @@ namespace FarhangbookStore.Services.EntitiesService
 		{ 
 			_Context = Context;
 		}
-        
+
+        #region کلیه متد های مربوط به جدول خصوصیات و ویژه گی های دسته بندی های کالای کتاب
+
         #region سرویس خصوصیات و ویژه گی ها
 
         public bool ExistPropertyname(string name, int id)
@@ -35,9 +37,9 @@ namespace FarhangbookStore.Services.EntitiesService
             return _Context.TBLPropertyNames.Any(p => p.PropertyTitle == name && p.PropertyNameId != id);
         }
         public List<TBL_PropertyName> ShowAllProperty()
-		{
-			return _Context.TBLPropertyNames.ToList();
-		}
+        {
+            return _Context.TBLPropertyNames.ToList();
+        }
 
         #endregion
 
@@ -124,6 +126,43 @@ namespace FarhangbookStore.Services.EntitiesService
                 return 0;
             }
         }
+        #endregion
+
+        #endregion
+
+        #region کلیه متد های مربوط به جدول ثبت، ویرایش، حذف و مدیریت کالای کتاب
+
+        #region متد نمایش کلیه اطلاعات کالای کتاب
+        public List<TBL_Product> ShowallProduct()
+        {
+            throw new NotImplementedException();
+        }
+        public TBL_Product FindProductBuyeid(int productid)
+        {
+            throw new NotImplementedException();
+        }
+        public int FindCategoryForProduct(int product)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region متد ثبت کلیه اطلاعات کالای کتاب
+        public int AddProduct(TBL_Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region متد بروزرسانی اطلاعات کالای کتاب
+        public bool UpdateProduct(TBL_Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
         #endregion
 
     }
