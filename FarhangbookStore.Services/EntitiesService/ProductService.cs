@@ -135,7 +135,7 @@ namespace FarhangbookStore.Services.EntitiesService
         #region متد نمایش کلیه اطلاعات کالای کتاب
         public List<TBL_Product> ShowallProduct()
         {
-            throw new NotImplementedException();
+            return _Context.TBLProducts.Where(p => !p.IsDelete).ToList();
         }
         public TBL_Product FindProductBuyeid(int productid)
         {

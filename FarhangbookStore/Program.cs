@@ -73,6 +73,7 @@ builder.Services.AddScoped<IWriterService, WriterService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductSizeBookService, ProductSizeBookService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
+builder.Services.AddScoped<IGroupBooksService, GroupBooksService>();
 
 //Services DataBase
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

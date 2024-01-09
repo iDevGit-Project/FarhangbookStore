@@ -31,6 +31,7 @@ namespace FarhangbookStore.DataModel
         public DbSet<TBL_ProductWriter> TBLProductWriters { get; set; }
         public DbSet<TBL_ProductPublisher> TBLProductPublishers { get; set; }
         public DbSet<TBL_ProductSizeBook> TBLProductSizeBooks { get; set; }
+        public DbSet<TBL_ProductGroupBooks> TBLProductGroupBooks { get; set; }
         #endregion
 
         //نوشتن تابع جهت از بین بردن خطای مربوط به ارتباط یک جدول با خودش

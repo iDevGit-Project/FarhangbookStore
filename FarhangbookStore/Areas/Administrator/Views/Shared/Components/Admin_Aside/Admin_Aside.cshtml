@@ -19,13 +19,18 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <span class="title">کتاب ها</span>
+                    <a asp-area="Administrator" asp-controller="Product" asp-action="ShowallProduct" class="nav-link">
+                        <span class="title">محصولات</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a asp-area="Administrator" asp-controller="Category" asp-action="showAllCategory" class="nav-link ">
                         <span class="title">دسته بندی ها</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Administrator" asp-controller="GroupBooks" asp-action="ShowAllGroupBooks" class="nav-link ">
+                        <span class="title">گروه بندی کتاب ها</span>
                     </a>
                 </li>
                 <li class="nav-item">

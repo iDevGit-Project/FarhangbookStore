@@ -1,7 +1,7 @@
-﻿@model FarhangbookStore.DataModel.Entities.TBL_ProductWriter
+﻿@model FarhangbookStore.DataModel.Entities.TBL_ProductGroupBooks
 @inject FarhangbookStore.PublicExtentions.ConvertDate convertDate
 @{
-    ViewData["Title"] = "ثبت نویسنده جدید | فروشگاه اینترنتی بانک کتاب شیراز";
+    ViewData["Title"] = "ثبت گروه کتاب جدید | فروشگاه اینترنتی بانک کتاب شیراز";
     Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -16,7 +16,7 @@
 <div class="m-heading-1 border-yellow-crusta m-bordered">
     <h4 class="bold">راهنما</h4>
     <p>
-        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت نویسنده جدید، جهت مدیرت نویسنده های ثبت شده بر روی دکمه <span class="bold">مدیریت نویسنده ها</span> کلیک نمایید.
+        کاربرگرامی: شما در این بخش می توانید علاوه بر ثبت گروه کتاب جدید، جهت مدیرت گروه کتاب های ثبت شده بر روی دکمه <span class="bold">مدیریت گروه کتاب ها</span> کلیک نمایید.
     </p>
 </div>
 <!-- BEGIN CONTAINER -->
@@ -28,7 +28,7 @@
         </div>
         <div class="actions">
             <a href="#" role="button" class="btn btn-outline red-thunderbird" id="Refresh_blockui"> بروزرسانی داده ها <i class="fa-solid fa fa-refresh fa-spinner fa-spin"></i></a>
-            <a asp-area="Administrator" asp-controller="Writer" asp-action="ShowAllWriter" role="button" class="btn green-jungle"> مدیریت نویسنده ها </a>
+            <a asp-area="Administrator" asp-controller="GroupBooks" asp-action="ShowAllGroupBooks" role="button" class="btn green-jungle"> مدیریت گروه کتاب ها </a>
             @*             <a href="#showmodal=@Url.Page("./Index", "Create")" role="button" class="btn btn-outline green-haze"> ثبت کتاب جدید <i class="fa fa-plus ml-2"></i></a> *@
             <a asp-area="Administrator" asp-controller="Home" asp-action="Index" role="button" class="btn dark btn-outline popovers" data-trigger="hover" data-placement="top" data-content="بازگشت به پنل مدیریت"> بازگشت به پنل مدیریت <i class="fa fa-angle-left"></i></a>
         </div>
@@ -44,7 +44,7 @@
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
-                            title: 'اطلاعات نویسنده ثبت شد.',
+                            title: 'گروه بندی جدید ثبت شد.',
                             showConfirmButton: false,
                             timer: 1800
                         })
@@ -71,7 +71,7 @@
             }
         }
         <!-- PERSONAL INFO TAB -->
-        <form asp-area="Administrator" asp-controller="Writer" asp-action="AddWriter" enctype="multipart/form-data">
+        <form asp-area="Administrator" asp-controller="GroupBooks" asp-action="AddGroupBooks" enctype="multipart/form-data">
             <!-- دسته بندی اصلی جهت اضافه کردن زیردسته ID بازگشت مقدار  -->
             <div class="panel-body">
                 <div class="row">
@@ -80,9 +80,9 @@
                             @* <label asp-for="CategoryFaTitle" class="control-label"></label> *@
                             <div class="input-icon right">
                                 <i class="icon-folder-alt"></i>
-                                <input asp-for="WriterFaTitle" class="form-control input-icon right" autofocus="autofocus" placeholder="نام نویسنده یا مؤلف را به فارسی وارد نمایید." />
+                                <input asp-for="GroupBookTitle" class="form-control input-icon right" autofocus="autofocus" placeholder="نام گروه کتاب را به فارسی وارد نمایید." />
                             </div>
-                            <span asp-validation-for="WriterFaTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird"></span>
+                            <span asp-validation-for="GroupBookTitle" id="inputError" class="bg-red-thunderbird bg-font-red-thunderbird"></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xl-12 col-sm-12">
@@ -104,7 +104,7 @@
     <!--===================================================================-->
     <!--اسکریپت جستجوی اطلاعات-->
     <script>
-                var infoDataTable = $('#Datatable_infoTable').DataTable({
+                        var infoDataTable = $('#Datatable_infoTable').DataTable({
                 paging: true,
                 // pageLength: 5,
                 // نمایش اطلاعات جستجو شده در زیر جدول به صورت فارسی

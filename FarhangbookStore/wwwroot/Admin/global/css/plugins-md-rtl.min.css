@@ -418,13 +418,13 @@
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success {
     color: #fff;
-    background: #36c6d3
+    background: #26C281
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning {
     color: #fff;
-    background: #F1C40F
+    background: #D91E18
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-danger,
